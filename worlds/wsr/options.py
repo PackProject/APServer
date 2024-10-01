@@ -86,6 +86,7 @@ class ExcludedStamps(OptionList):
     `amount` is optional and will default to 1 if omitted. Any value higher than 1 will not generate properly.
 
     """
+    display_name = "Excluded Stamps"
 
 
 class MusicShuffle(Choice):
