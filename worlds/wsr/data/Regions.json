@@ -42,9 +42,9 @@
     {
         "region_name": "Archery Menu",
         "exits": {
-            "Beginner_Archery": "has_unlocked_beginner_archery",
-            "Intermediate_Archery": "has_unlocked_intermediate_archery",
-            "Expert_Archery": "has_unlocked_expert_archery"
+            "Beginner Archery": "has_unlocked_beginner_archery",
+            "Intermediate Archery": "has_unlocked_intermediate_archery",
+            "Expert Archery": "has_unlocked_expert_archery"
         }
     },
     {
@@ -64,9 +64,9 @@
     {
         "region_name": "Golf Menu",
         "exits": {
-            "3-Hole Menu": "has_unlocked_three_hole_course",
-            "9-Hole Menu": "has_unlocked_nine_hole_course",
-            "18-Hole Menu": "has_unlocked_eighteen_course"
+            "3-Hole Menu Golf": "has_unlocked_three_hole_course",
+            "9-Hole Menu Golf": "has_unlocked_nine_hole_course",
+            "18-Hole Menu Golf": "has_unlocked_eighteen_course"
         }
     },
     {
@@ -125,6 +125,309 @@
             "Daytime": "has_unlocked_daytime",
             "Evening": "has_unlocked_evening",
             "Night": "has_unlocked_night"
+        }
+    },
+    {
+        "region_name": "Daytime",
+        "exits": {
+            "IF Game": "True"
+        }
+    },
+    {
+        "region_name": "Evening",
+        "exits": {
+            "IF Game": "True"
+        }
+    },
+    {
+        "region_name": "Night",
+        "exits": {
+            "IF Game": "True"
+        }
+    },
+    {
+        "region_name": "3-Hole Menu FG",
+        "exits": {
+            "FG Game": "True"
+        }
+    },
+    {
+        "region_name": "9-Hole Menu FG",
+        "exits": {
+            "FG Game": "True"
+        }
+    },
+    {
+        "region_name": "18-Hole Menu FG",
+        "exits": {
+            "FG Game": "True"
+        }
+    },
+    {
+        "region_name": "3-Hole Menu Golf",
+        "exits": {
+            "Golf Game": "True"
+        }
+    },
+    {
+        "region_name": "9-Hole Menu Golf",
+        "exits": {
+            "Golf Game": "True"
+        }
+    },
+    {
+        "region_name": "18-Hole Menu Golf",
+        "exits": {
+            "Golf Game": "True"
+        }
+    },
+    {
+        "region_name": "Beginner Archery",
+        "exits": {
+            "Archery Game": "True"
+        }
+    },
+    {
+        "region_name": "Intermediate Archery",
+        "exits": {
+            "Archery Game": "True"
+        }
+    },
+    {
+        "region_name": "Expert Archery",
+        "exits": {
+            "Archery Game": "True"
+        }
+    },
+    {
+        "region_name": "Beginner Canoeing",
+        "exits": {
+            "Canoe Game": "True"
+        }
+    },
+    {
+        "region_name": "Intermediate Canoeing",
+        "exits": {
+            "Canoe Game": "True"
+        }
+    },
+    {
+        "region_name": "Expert Canoeing",
+        "exits": {
+            "Canoe Game": "True"
+        }
+    },
+    {
+        "region_name": "Beach",
+        "exits": {
+            "PC Game": "True"
+        }
+    },
+    {
+        "region_name": "Lagoon",
+        "exits": {
+            "PC Game": "True"
+        }
+    },
+    {
+        "region_name": "Lighthouse",
+        "exits": {
+            "PC Game": "True"
+        }
+    },
+    {
+        "region_name": "Marina",
+        "exits": {
+            "PC Game": "True"
+        }
+    },
+    {
+        "region_name": "Cavern",
+        "exits": {
+            "PC Game": "True"
+        }
+    },
+    {
+        "region_name": "Shoals",
+        "exits": {
+            "PC Game": "True"
+        }
+    },
+    {
+        "region_name": "1-Stage Race",
+        "exits": {
+            "Cycling Game": "True"
+        }
+    },
+    {
+        "region_name": "3-Stage Race",
+        "exits": {
+            "Canoe Game": "True"
+        }
+    },
+    {
+        "region_name": "6-Stage Race",
+        "exits": {
+            "Canoe Game": "True"
+        }
+    },
+    {
+        "region_name": "Duel",
+        "locations": {
+            "Swordplay Duel (Stamp) - Cliff-hanger": "True",
+            "Swordplay Duel (Stamp) - Straight to the Point": "True",
+            "Swordplay Duel (Stamp) - Met Your Match": "True",
+            "Swordplay Duel (Stamp) - One-Hit Wonder": "True",
+            "Swordplay Duel (Stamp) - Last Mii Standing": "True",
+            "Swordplay Duel - Pro Status": "True",
+            "Swordplay Duel - Beat The Champion (Matt)": "True"
+        }
+    },
+    {
+        "region_name": "Speed Slice",
+        "locations": {
+            "Swordplay Speed Slice (Stamp) - Slice and Dice": "True",
+            "Swordplay Speed Slice (Stamp) - Slicing Machine": "True",
+            "Swordplay Speed Slice (Stamp) - Psychic Slice": "True",
+            "Swordplay Speed Slice (Stamp) - Double Time": "True",
+            "Swordplay Speed Slice (Stamp) - A Cut Above": "True",
+            "Swordplay Speed Slice - Pro Status": "True",
+            "Swordplay Speed Slice - Beat The Champion (Matt):": "True",
+            "Swordplay Speed Slice - First Win": "True"
+        }
+    },
+    {
+        "region_name": "Showdown",
+        "locations": {
+            "Swordplay Showdown (Stamp) - Not a Scrath": "True",
+            "Swordplay Showdown (Stamp) - Sword Fighter": "has_unlocked_normal_stages",
+            "Swordplay Showdown (Stamp) - Perfect 10": "has_unlocked_normal_stage_ten",
+            "Swordplay Showdown (Stamp) - Swordmaster": "has_unlocked_reverse_stage_ten",
+            "Swordplay Showdown (Stamp) - Untouchable": "has_unlocked_reverse_stages",
+            "Swordplay Showdown - Pro Status": "True",
+            "Swordplay Showdown - Complete stage": "True"
+        }
+    },
+    {
+        "region_name": "Wakeboarding",
+        "locations": {
+            "Wakeboarding (Stamp) - Huge Air": "has_wakeboard_high_score_time",
+            "Wakeboarding (Stamp) - Bag of Tricks": "has_wakeboard_low_score_time",
+            "Wakeboarding (Stamp) - Smooth Landing": "has_wakeboard_low_score_time",
+            "Wakeboarding (Stamp) - Master Carver": "has_unlocked_expert_wake and (Wakeboard_Timer, 2)",
+            "Wakeboarding (Stamp) - The Long Way Home": "True",
+            "Wakeboarding - Pro Status": "has_wakeboard_high_score_time",
+
+            "__comment": "TO DO LATER - NEED DIFFICULTY UNLOCK VALUES"
+        }
+    },
+    {
+        "region_name": "Frisbee Dog",
+        "locations": {
+            "Frisbee Dog (Stamp) - Good Dog": "(FD_Frisbee, 1)",
+            "Frisbee Dog (Stamp) - Balloon Animal": "(FD_Frisbee, 10)",
+            "Frisbee Dog (Stamp) - A for Effort": "(FD_Frisbee, 10)",
+            "Frisbee Dog (Stamp) - Perfect Target": "(FD_Frisbee, 10)",
+            "Frisbee Dog (Stamp) - Golden Arm": "(FD_Frisbee, 10)",
+            "Frisbee Dog - Pro Status": "(FD_Frisbee, 6)"
+        }
+    },
+    {
+        "region_name": "FG Game",
+        "locations": {
+            "Frisbee Golf (Stamp) - Under Par": "(Progressive_Frisbee, 2) or (Frisbee_Driver, 1)",
+            "Frisbee Golf (Stamp) - Lucky Skip": "(Progressive_Frisbee, 3) or (Frisbee_Driver, 1)",
+            "Frisbee Golf (Stamp) - On a Roll": "True",
+            "Frisbee Golf (Stamp) - Hole in One": "has_unlocked_hio_course_fg and ((Progressive_Frisbee, 3) or (Frisbee_Driver, 1))",
+            "Frisbee Golf (Stamp) - Straight and Narrow": "has_unlocked_eighteen_course_fg and ((Progressive_Frisbee, 3) or (Frisbee_Driver, 1 and Frisbee_Putter, 1))",
+            "Frisbee Golf - Pro Status": "((Progressive_Frisbee, 2) or (Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Get A Par": "((Progressive_Frisbee, 2) or (Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Get A Birdie": "((Progressive_Frisbee, 3) or (Frisbee_Driver, 1)",
+            "Frisbee Golf - Get An Eagle": "((Progressive_Frisbee, 3) or (Frisbee_Driver, 1)"
+        }
+    },
+    {
+        "region_name": "Archery Game",
+        "locations": {
+            "__comment": "TO DO LATER - NEED DIFFICULTY UNLOCK VALUES"
+        }
+    },
+    {
+        "region_name": "3 Point Contest",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "Pickup Game",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "Match",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "Return Challenge",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "Golf Game",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "Standard Game",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "100-Pin Game",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "Spin Control",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "PC Game",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "Canoe Game",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "Cycling Game",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "Skydiving",
+        "locations": {
+            "__comment": "DO LATER"
+        }
+    },
+    {
+        "region_name": "IF Game",
+        "locations": {
+            "__comment": "DO LATER"
         }
     }
 ]

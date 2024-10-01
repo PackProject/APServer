@@ -4,5 +4,10 @@
     "has_unlocked_three_hole_course_fg": "has_unlocked_classic_a_fg or has_unlocked_classic_b_fg or has_unlocked_classic_c_fg or has_unlocked_resort_a_fg or has_unlocked_resort_b_fg or has_unlocked_resort_c_fg or has_unlocked_special_fg",
     "has_unlocked_nine_hole_course_fg": "has_unlocked_classic_nine_fg or has_unlocked_resort_nine_fg",
     "has_unlocked_one_stage": "has_unlocked_around_the_island or has_unlocked_to_the_beach or has_unlocked_across_the_bridge or has_unlocked_over_talon_rock or has_unlocked_up_the_volcano or has_unlocked_into_maku_wuhu",
-    "has_unlocked_three_stage": "has_unlocked_three_stage_a or has_unlocked_three_stage_b"
+    "has_unlocked_three_stage": "has_unlocked_three_stage_a or has_unlocked_three_stage_b",
+    "has_unlocked_normal_stages": "has_unlocked_normal_stage_one and has_unlocked_normal_stage_two and has_unlocked_normal_stage_three and has_unlocked_normal_stage_four and has_unlocked_normal_stage_five and has_unlocked_normal_stage_six and has_unlocked_normal_stage_seven and has_unlocked_normal_stage_eight and has_unlocked_normal_stage_nine and has_unlocked_normal_stage_ten",
+    "has_unlocked_reverse_stages": "has_unlocked_reverse_stage_one and has_unlocked_reverse_stage_two and has_unlocked_reverse_stage_three and has_unlocked_reverse_stage_four and has_unlocked_reverse_stage_five and has_unlocked_reverse_stage_six and has_unlocked_reverse_stage_seven and has_unlocked_reverse_stage_eight and has_unlocked_reverse_stage_nine and has_unlocked_reverse_stage_ten",
+    "has_wakeboard_high_score_time": "(has_unlocked_beginner_wake and (Wakeboard_Timer, 2)) or (has_unlocked_intermediate_wake and (Wakeboard_Timer, 3)) or (has_unlocked_expert_wake and (Wakeboard_Timer, 4))",
+    "has_wakeboard_low_score_time": "(has_unlocked_beginner_wake and (Wakeboard_Timer, 1)) or (has_unlocked_intermediate_wake and (Wakeboard_Timer, 1)) or (has_unlocked_expert_wake and (Wakeboard_Timer, 2))",
+    "has_unlocked_hio_course_fg": "has_unlocked_classic_a_fg or has_unlocked_classic_b_fg or has_unlocked_resort_a_fg or has_unlocked_resort_b_fg or has_unlocked_resort_c_fg or has_unlocked_classic_nine_fg or has_unlocked_resort_nine_fg or has_unlocked_eighteen_course_fg"
 }
