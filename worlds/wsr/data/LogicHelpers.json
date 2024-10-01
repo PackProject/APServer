@@ -1,0 +1,8 @@
+{
+    "has_unlocked_three_hole_course": "has_unlocked_classic_a or has_unlocked_classic_b or has_unlocked_classic_c or has_unlocked_resort_a or has_unlocked_resort_b or has_unlocked_resort_c or has_unlocked_special",
+    "has_unlocked_nine_hole_course": "has_unlocked_classic_nine or has_unlocked_resort_nine",
+    "has_unlocked_three_hole_course_fg": "has_unlocked_classic_a_fg or has_unlocked_classic_b_fg or has_unlocked_classic_c_fg or has_unlocked_resort_a_fg or has_unlocked_resort_b_fg or has_unlocked_resort_c_fg or has_unlocked_special_fg",
+    "has_unlocked_nine_hole_course_fg": "has_unlocked_classic_nine_fg or has_unlocked_resort_nine_fg",
+    "has_unlocked_one_stage": "has_unlocked_around_the_island or has_unlocked_to_the_beach or has_unlocked_across_the_bridge or has_unlocked_over_talon_rock or has_unlocked_up_the_volcano or has_unlocked_into_maku_wuhu",
+    "has_unlocked_three_stage": "has_unlocked_three_stage_a or has_unlocked_three_stage_b"
+}
