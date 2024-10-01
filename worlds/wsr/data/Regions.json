@@ -1,0 +1,130 @@
+[
+    {
+        "region_name": "Menu",
+        "exits": {
+            "Swordplay Menu": "has_unlocked_swordplay",
+            "Wakeboarding Menu": "has_unlocked_wakeboarding",
+            "Frisbee Menu": "has_unlocked_frisbee",
+            "Archery Menu": "has_unlocked_archery",
+            "Basketball Menu": "has_unlocked_basketball",
+            "Table Tennis Menu": "has_unlocked_table_tennis",
+            "Golf Menu": "has_unlocked_golf",
+            "Bowling Menu": "has_unlocked_bowling",
+            "Power Cruising Menu": "has_unlocked_power_cruising",
+            "Canoeing Menu": "has_unlocked_canoeing",
+            "Cycling Menu": "has_unlocked_cycling",
+            "Air Sports Menu": "has_unlocked_air_sports"
+        }
+    },
+    {
+        "region_name": "Swordplay Menu",
+        "exits": {
+            "Duel": "has_unlocked_duel",
+            "Speed Slice": "has_unlocked_speed_slice",
+            "Showdown": "has_unlocked_showdown"
+        }
+    },
+    {
+        "region_name": "Wakeboarding Menu",
+        "exits": {
+            "Beginner_Wakeboarding": "has_unlocked_beginner_wake",
+            "Intermediate_Wakeboarding": "has_unlocked_intermediate_wake",
+            "Expert_Wakeboarding": "has_unlocked_expert_wake"
+        }
+    },
+    {
+        "region_name": "Frisbee Menu",
+        "exits": {
+            "Frisbee Dog": "has_unlocked_frisbee_dog",
+            "Frisbee Golf Menu": "has_unlocked_frisbee_golf_menu"
+        }
+    },
+    {
+        "region_name": "Archery Menu",
+        "exits": {
+            "Beginner_Archery": "has_unlocked_beginner_archery",
+            "Intermediate_Archery": "has_unlocked_intermediate_archery",
+            "Expert_Archery": "has_unlocked_expert_archery"
+        }
+    },
+    {
+        "region_name": "Basketball Menu",
+        "exits": {
+            "3 Point Contest": "has_unlocked_three_point_contest",
+            "Pickup Game": "has_unlocked_pickup_game"
+        }
+    },
+    {
+        "region_name": "Table Tennis Menu",
+        "exits": {
+            "Match": "has_unlocked_match",
+            "Return Challenge": "has_unlocked_return_challenge"
+        }
+    },
+    {
+        "region_name": "Golf Menu",
+        "exits": {
+            "3-Hole Menu": "has_unlocked_three_hole_course",
+            "9-Hole Menu": "has_unlocked_nine_hole_course",
+            "18-Hole Menu": "has_unlocked_eighteen_course"
+        }
+    },
+    {
+        "region_name": "Bowling Menu",
+        "exits": {
+            "Standard Game": "has_unlocked_standard_game",
+            "100-Pin Game": "has_unlocked_100_pin_game",
+            "Spin Control": "has_unlocked_spin_control"
+        }
+    },
+    {
+        "region_name": "Power Cruising Menu",
+        "exits": {
+            "Beach": "has_unlocked_beach",
+            "Lagoon": "has_unlocked_lagoon",
+            "Lighthouse": "has_unlocked_lighthouse",
+            "Marina": "has_unlocked_marina",
+            "Cavern": "has_unlocked_cavern",
+            "Shoals": "has_unlocked_shoals"
+        }
+    },
+    {
+        "region_name": "Canoeing Menu",
+        "exits": {
+            "Beginner Canoeing": "has_unlocked_beginner_canoeing",
+            "Intermediate Canoeing": "has_unlocked_intermediate_canoeing",
+            "Expert Canoeing": "has_unlocked_expert_canoeing"
+        }
+    },
+    {
+        "region_name": "Cycling Menu",
+        "exits": {
+            "1-Stage Race": "has_unlocked_one_stage",
+            "3-Stage Race": "has_unlocked_three_stage",
+            "6-Stage Race": "has_unlocked_six_stage"
+        }
+    },
+    {
+        "region_name": "Air Sports Menu",
+        "exits": {
+            "Skydiving": "has_unlocked_skydiving",
+            "Island Flyover Menu": "has_unlocked_island_flyover_menu"
+        }
+    },
+    {
+        "region_name": "Frisbee Golf Menu",
+        "exits": {
+            "3-Hole Menu FG": "has_unlocked_three_hole_course_fg",
+            "9-Hole Menu FG": "has_unlocked_nine_hole_course_fg",
+            "18-Hole Menu FG": "has_unlocked_eighteen_course_fg"
+        }
+    },
+    {
+        "region_name": "Island Flyover Menu",
+        "exits": {
+            "Daytime": "has_unlocked_daytime",
+            "Evening": "has_unlocked_evening",
+            "Night": "has_unlocked_night"
+        }
+    }
+]
