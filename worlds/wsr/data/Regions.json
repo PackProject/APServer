@@ -494,7 +494,37 @@
     {
         "region_name": "IF Game",
         "locations": {
-            "__comment": "DO LATER"
+            "Island Flyover (Stamp) - Island Hopper": "(IF_Progressive_Timer, 2)",
+            "Island Flyover (Stamp) - Pop Frenzy": "(IF_Progressive_Timer, 5)",
+            "Island Flyover (Stamp) - Follow That Plane": "(IF_Progressive_Timer, 4)",
+            "Island Flyover (Stamp) - Wuhu Tour Guide": "has_all_time_of_day and (IF_Progressive_Timer, 5)",
+            "Island Flyover (Stamp) - Balloonatic": "has_all_time_of_day and (IF_Progressive_Timer, 5)",
+            "Island Flyover - Progressive I-Point Group (1)": "(IF_Progressive_Timer, 1)",
+            "Island Flyover - Progressive I-Point Group (2)": "(IF_Progressive_Timer, 1)",
+            "Island Flyover - Progressive I-Point Group (3)": "(IF_Progressive_Timer, 1)",
+            "Island Flyover - Progressive I-Point Group (4)": "(IF_Progressive_Timer, 1)",
+            "Island Flyover - Progressive I-Point Group (5)": "(IF_Progressive_Timer, 1)",
+            "Island Flyover - Progressive I-Point Group (6)": "has_two_time_of_day and (IF_Progressive_Timer, 3)",
+            "Island Flyover - Progressive I-Point Group (7)": "has_two_time_of_day and (IF_Progressive_Timer, 3)",
+            "Island Flyover - Progressive I-Point Group (8)": "has_two_time_of_day and (IF_Progressive_Timer, 3)",
+            "Island Flyover - Progressive I-Point Group (9)": "has_two_time_of_day and (IF_Progressive_Timer, 3)",
+            "Island Flyover - Progressive I-Point Group (10)": "has_two_time_of_day and (IF_Progressive_Timer, 3)",
+            "Island Flyover - Progressive I-Point Group (11)": "has_all_time_of_day and (IF_Progressive_Timer, 5)",
+            "Island Flyover - Progressive I-Point Group (12)": "has_all_time_of_day and (IF_Progressive_Timer, 5)",
+            "Island Flyover - Progressive I-Point Group (13)": "has_all_time_of_day and (IF_Progressive_Timer, 5)",
+            "Island Flyover - Progressive I-Point Group (14)": "has_all_time_of_day and (IF_Progressive_Timer, 5)",
+            "Island Flyover - Progressive I-Point Group (15)": "has_all_time_of_day and (IF_Progressive_Timer, 5)",
+            "Island Flyover - Progressive White Balloon Group (1)": "(IF_Progressive_Timer, 2)",
+            "Island Flyover - Progressive White Balloon Group (2)": "(IF_Progressive_Timer, 2)",
+            "Island Flyover - Progressive White Balloon Group (3)": "(IF_Progressive_Timer, 2)",
+            "Island Flyover - Progressive White Balloon Group (4)": "has_two_time_of_day and (IF_Progressive_Timer, 4)",
+            "Island Flyover - Progressive White Balloon Group (5)": "has_two_time_of_day and (IF_Progressive_Timer, 4)",
+            "Island Flyover - Progressive White Balloon Group (6)": "has_two_time_of_day and (IF_Progressive_Timer, 4)",
+            "Island Flyover - Progressive White Balloon Group (7)": "has_two_time_of_day and (IF_Progressive_Timer, 4)",
+            "Island Flyover - Progressive White Balloon Group (8)": "has_two_time_of_day and (IF_Progressive_Timer, 4)",
+            "Island Flyover - Progressive White Balloon Group (9)": "has_all_time_of_day and (IF_Progressive_Timer, 5)",
+            "Island Flyover - Progressive White Balloon Group (10)": "has_all_time_of_day and (IF_Progressive_Timer, 5)",
+            "Island Flyover - Progressive White Balloon Group (11)": "has_all_time_of_day and (IF_Progressive_Timer, 5)"
         }
     }
 ]
