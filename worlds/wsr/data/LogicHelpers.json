@@ -9,5 +9,9 @@
     "has_unlocked_reverse_stages": "has_unlocked_reverse_stage_one and has_unlocked_reverse_stage_two and has_unlocked_reverse_stage_three and has_unlocked_reverse_stage_four and has_unlocked_reverse_stage_five and has_unlocked_reverse_stage_six and has_unlocked_reverse_stage_seven and has_unlocked_reverse_stage_eight and has_unlocked_reverse_stage_nine and has_unlocked_reverse_stage_ten",
     "has_wakeboard_high_score_time": "(has_unlocked_beginner_wake and (Wakeboard_Timer, 2)) or (has_unlocked_intermediate_wake and (Wakeboard_Timer, 3)) or (has_unlocked_expert_wake and (Wakeboard_Timer, 4))",
     "has_wakeboard_low_score_time": "(has_unlocked_beginner_wake and (Wakeboard_Timer, 1)) or (has_unlocked_intermediate_wake and (Wakeboard_Timer, 1)) or (has_unlocked_expert_wake and (Wakeboard_Timer, 2))",
-    "has_unlocked_hio_course_fg": "has_unlocked_classic_a_fg or has_unlocked_classic_b_fg or has_unlocked_resort_a_fg or has_unlocked_resort_b_fg or has_unlocked_resort_c_fg or has_unlocked_classic_nine_fg or has_unlocked_resort_nine_fg or has_unlocked_eighteen_course_fg"
+    "has_unlocked_hio_course_fg": "has_unlocked_classic_a_fg or has_unlocked_classic_b_fg or has_unlocked_resort_a_fg or has_unlocked_resort_b_fg or has_unlocked_resort_c_fg or has_unlocked_classic_nine_fg or has_unlocked_resort_nine_fg or has_unlocked_eighteen_course_fg",
+    "golf_under_par_logic": "((has_unlocked_three_hole_course and ((Progressive_Club, 7) or (((Club_Driver, 1) or (Club_3Wood, 1)) and (Club_Putter, 1))) or ((has_unlocked_nine_hole_course or has_unlocked_eighteen_course) and ((Progressive_Club, 8) or ((Club_Driver, 1) and (Club_Putter, 1))) and (Golf_Turning, 1)",
+    "golf_chip_in_logic": "((Progressive_Driver, 2) or (Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+    "golf_high_score_logic": "(Golf_Turning, 1) and (Golf_Backspin, 1) and has_unlocked_eighteen_course and ()",
+    "golf_hole_in_one_logic": ""
 }

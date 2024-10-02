@@ -377,67 +377,118 @@
             "Pickup Game (Stamp) - Buzzer Beater": "True",
             "Pickup Game (Stamp) - Hoop Hero": "(Three_Pointers, 1) and (Progressive_Passing, 1) and (Progressive_Timer, 2)",
             "Pickup Game - Pro Status": "True",
-            "Pickup Game (Stamp) - Beat The Champion": "(Three_Pointers, 1) and (Progressive_Passing, 1) and (Progressive_Timer, 2)"
+            "Pickup Game (Stamp) - Beat The Champion (Tommy)": "(Three_Pointers, 1) and (Progressive_Passing, 1) and (Progressive_Timer, 2)"
         }
     },
     {
         "region_name": "Match",
         "locations": {
-            "__comment": "DO LATER"
+            "Table Tennis Match (Stamp) - In Your Face": "True",
+            "Table Tennis Match (Stamp) - Back from the Brink": "True",
+            "Table Tennis Match (Stamp) - Epic Rally": "True",
+            "Table Tennis Match (Stamp) - Perfectly Matched": "True",
+            "Table Tennis Match (Stamp) - Table Titan": "True",
+            "Table Tennis Match - Pro Status": "True",
+            "Table Tennis Match - Beat The Champion (Lucia)": "True"
         }
     },
     {
         "region_name": "Return Challenge",
         "locations": {
-            "__comment": "DO LATER"
+            "Return Challenge (Stamp) - 50-pointer": "True",
+            "Return Challenge (Stamp) - 100-pointer": "True",
+            "Return Challenge (Stamp) - 200-pointer": "True",
+            "Return Challenge (Stamp) - Recycler": "(RC_Cans, 1)",
+            "Return Challenge (Stamp) - Save Face": "True",
+            "Return Challenge - Pro Status": "True"
         }
     },
     {
         "region_name": "Golf Game",
         "locations": {
-            "__comment": "DO LATER"
+            "Golf (Stamp) - Under Par": "golf_under_par_logic",
+            "Golf (Stamp) - Chip In": "golf_chip_in_logic",
+            "Golf (Stamp) - King of Clubs": "golf_high_score_logic",
+            "Golf (Stamp) - Ace of Clubs": "golf_high_score_logic",
+            "Golf (Stamp) - Hole in One": "golf_hole_in_one_logic",
+            "Golf - Pro Status": "golf_high_score_logic"
         }
     },
     {
         "region_name": "Standard Game",
         "locations": {
-            "__comment": "DO LATER"
+            "Bowling Standard (Stamp) - Gobble Gobble": "(Bowling_Turning, 1) or (Bowling_Moving, 1) or (Bowling_Spin, 1)",
+            "Bowling Standard (Stamp) - Split Spare": "(Bowling_Turning, 1) or (Bowling_Moving, 1) or (Bowling_Spin, 1)",
+            "Bowling Standard (Stamp) - High Roller": "(Bowling_Turning, 1) or (Bowling_Moving, 1) or (Bowling_Spin, 1)",
+            "Bowling Standard (Stamp) - Pin Dropper": "(Bowling_Turning, 1) and (Bowling_Moving, 1) and (Bowling_Spin, 1)",
+            "Bowling Standard (Stamp) - Perfect Game": "(Bowling_Turning, 1) and (Bowling_Moving, 1) and (Bowling_Spin, 1)",
+            "Bowling Standard - Pro Status": "(Bowling_Turning, 1) or (Bowling_Moving, 1) or (Bowling_Spin, 1)"
         }
     },
     {
         "region_name": "100-Pin Game",
         "locations": {
-            "__comment": "DO LATER"
+            "Bowling 100-Pin (Stamp) - Super Strike": "(Bowling_100_Turning, 1) or (Bowling_100_Moving, 1) or (Bowling_100_Spin, 1)",
+            "Bowling 100-Pin (Stamp) - Split Spare": "(Bowling_100_Turning, 1) or (Bowling_100_Moving, 1) or (Bowling_100_Spin, 1)",
+            "Bowling 100-Pin (Stamp) - Off the Wall": "(Bowling_100_Turning, 1)",
+            "Bowling 100-Pin (Stamp) - Secret Strike": "(Bowling_100_Moving, 1)",
+            "Bowling 100-Pin (Stamp) - Pin Dropper": "(Bowling_100_Turning, 1) and (Bowling_100_Moving, 1) and (Bowling_100_Spin, 1)",
+            "Bowling 100-Pin - Pro Status": "(Bowling_100_Turning, 1) or (Bowling_100_Moving, 1) or (Bowling_100_Spin, 1)"
         }
     },
     {
         "region_name": "Spin Control",
         "locations": {
-            "__comment": "DO LATER"
+            "Spin Control (Stamp) - One for All": "(SC_Turning, 1) and (SC_Moving, 1) and (SC_Spin, 1)",
+            "Spin Control (Stamp) - Split Spare": "(SC_Turning, 1) and (SC_Moving, 1) and (SC_Spin, 1)",
+            "Spin Control (Stamp) - Head First": "(SC_Turning, 1) and (SC_Moving, 1) and (SC_Spin, 1)",
+            "Spin Control (Stamp) - English Major": "(SC_Turning, 1) and (SC_Moving, 1) and (SC_Spin, 1)",
+            "Spin Control (Stamp) - Pin Dropper": "(SC_Turning, 1) and (SC_Moving, 1) and (SC_Spin, 1)",
+            "Spin Control - Pro Status": "(SC_Turning, 1) and (SC_Moving, 1) and (SC_Spin, 1)"
         }
     },
     {
         "region_name": "PC Game",
         "locations": {
-            "__comment": "DO LATER"
+            "Power Cruising (Stamp) - Ringmaster": "(PC_Bonus_Ring, 1)",
+            "Power Cruising (Stamp) - 5,000-Pointer": "(PC_Boost, 1) and (Progressive_Ring_Timer, 2) and (PC_Bonus_Ring, 1)",
+            "Power Cruising (Stamp) - Power Cruiser": "(PC_Boost, 1) and (Progressive_Ring_Timer, 2) and (PC_Bonus_Ring, 1)",
+            "Power Cruising (Stamp) - Power Jumper": "(PC_Bonus_Ring, 1) and (PC_Boost, 1)",
+            "Power Cruising (Stamp) - Leisure Cruiser": "(PC_Boost, 1)",
+            "Power Cruising - Pro Status": "(PC_Boost, 1) and (Progressive_Ring_Timer, 2) and (PC_Bonus_Ring, 1)"
         }
     },
     {
         "region_name": "Canoe Game",
         "locations": {
-            "__comment": "DO LATER"
+            "Canoeing (Stamp) - Beginner License": "(Canoe_Progressive_Timer, 3) and (Canoe_Beginner_Difficulty, 1)",
+            "Canoeing (Stamp) - Intermediate License": "(Canoe_Progressive_Timer, 4) and (Canoe_Intermediate_Difficulty, 1)",
+            "Canoeing (Stamp) - Expert License": "(Canoe_Progressive_Timer, 5) and (Canoe_Expert_Difficulty, 1)",
+            "Canoeing (Stamp) - Ducks in a Row": "True",
+            "Canoeing (Stamp) - Cut the Red Tape": "(Canoe_Progressive_Timer, 5) and ((Canoe_Beginner_Difficulty, 1) and (Canoe_Intermediate_Difficulty, 1) and (Canoe_Expert_Difficulty, 1))",
+            "Canoeing - Pro Status": "((Canoe_Expert_Difficulty,1) and (Canoe_Progressive_Timer, 5)) and ((Canoe_Intermediate_Difficulty, 1) or (Canoe_Beginner_Difficulty, 1))"
         }
     },
     {
         "region_name": "Cycling Game",
         "locations": {
-            "__comment": "DO LATER"
+            "Cycling (Stamp) - Last Gasp": "True",
+            "Cycling (Stamp) - First of Many": "(Cycling_Heart, 2)",
+            "Cycling (Stamp) - 1-Stage Master": "(Cycling_Heart, 3) and ((Cycling_Stage_A1, 1) or (Cycling_Stage_A2, 1) or (Cycling_Stage_A3) or (Cycling_Stage_B1, 1) or (Cycling_Stage_B2, 1) or (Cycling_Stage_B3, 1))",
+            "Cycling (Stamp) - 3-Stage Master": "(Cycling_Heart, 3) and ((Cycling_Three_Stage_A, 1) or (Cycling_Three_Stage_B, 1))",
+            "Cycling (Stamp) - 6-Stage Master": "(Cycling_6_Stage, 1) and (Cycling_Heart, 3) and (Cycling_Drafting, 1)",
+            "Cycling - Pro Status": "(Cycling_Heart, 3) or ((Cycling_Heart, 2) and (Cycling_Drafting, 1))"
         }
     },
     {
         "region_name": "Skydiving",
         "locations": {
-            "__comment": "DO LATER"
+            "Skydiving (Stamp) - High Five": "True",
+            "Skydiving (Stamp) - For the Birds": "True",
+            "Skydiving (Stamp) - Friends in High Places": "True",
+            "Skydiving (Stamp) - Camera Shy": "True",
+            "Skydiving (Stamp) - 200-point Dive": "True",
+            "Skydiving - Pro Status": "True"
         }
     },
     {
