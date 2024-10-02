@@ -335,7 +335,7 @@
     {
         "region_name": "FG Game",
         "locations": {
-            "Frisbee Golf (Stamp) - Under Par": "(Progressive_Frisbee, 2) or (Frisbee_Driver, 1)",
+            "Frisbee Golf (Stamp) - Under Par": "(Progressive_Frisbee, 2) or (Frisbee_Driver, 1) or (Frisbee_Midrange, 1)",
             "Frisbee Golf (Stamp) - Lucky Skip": "(Progressive_Frisbee, 3) or (Frisbee_Driver, 1)",
             "Frisbee Golf (Stamp) - On a Roll": "True",
             "Frisbee Golf (Stamp) - Hole in One": "has_unlocked_hio_course_fg and ((Progressive_Frisbee, 3) or (Frisbee_Driver, 1))",
@@ -349,19 +349,35 @@
     {
         "region_name": "Archery Game",
         "locations": {
-            "__comment": "TO DO LATER - NEED DIFFICULTY UNLOCK VALUES"
+            "Archery (Stamp) - Bull Stampede": "(Progressive_Arrow, 3)",
+            "Archery (Stamp) - Sure Shot": "(Progressive_Arrow, 3)",
+            "Archery (Stamp) - Century Shot": "(Progressive_Arrow, 2)",
+            "Archery (Stamp) - A Secret to Everybody": "Progressive_Fruits, 3)",
+            "Archery (Stamp) - Sharpshooter": "(Progressive_Arrow, 3)",
+            "Archery - Pro Status": "(Progressive_Arrow, 2)"
         }
     },
     {
         "region_name": "3 Point Contest",
         "locations": {
-            "__comment": "DO LATER"
+            "3-Point Contest (Stamp) - Hot Streak": "(Progressive_Timer, 2)",
+            "3-Point Contest (Stamp) - Bonus Plumber": "(Progressive_Bonus_Balls, 5) and (Progressive_Timer, 4)",
+            "3-Point Contest (Stamp) - Quick Draw": "(Progressive_Bonus_Balls, 2) and (Progressive_Timer, 5)",
+            "3-Point Contest (Stamp) - Hot Hand": "(Progressive_Bonus_Balls, 5) and (Progressive_Timer, 5)",
+            "3-Point Contest (Stamp) - Pure Shooter": "(Progressive_Bonus_Balls, 5) and (Progressive_Timer, 5)",
+            "3-Point Contest - Pro Status": "(Progressive_Timer, 5) or ((Progressive_Bonus_Balls, 4) and (Progressive_Timer, 4))"
         }
     },
     {
         "region_name": "Pickup Game",
         "locations": {
-            "__comment": "DO LATER"
+            "Pickup Game (Stamp) - Triple Dip": "(Three_Pointers, 1)",
+            "Pickup Game (Stamp) - Rim Rattler": "(Dunk_Ability, 1)",
+            "Pickup Game (Stamp) - Lights Out": "(Three_Pointers, 1) and (Progressive_Timer, 4)",
+            "Pickup Game (Stamp) - Buzzer Beater": "True",
+            "Pickup Game (Stamp) - Hoop Hero": "(Three_Pointers, 1) and (Progressive_Passing, 1) and (Progressive_Timer, 2)",
+            "Pickup Game - Pro Status": "True",
+            "Pickup Game (Stamp) - Beat The Champion": "(Three_Pointers, 1) and (Progressive_Passing, 1) and (Progressive_Timer, 2)"
         }
     },
     {
