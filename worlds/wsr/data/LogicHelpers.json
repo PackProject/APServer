@@ -1,4 +1,5 @@
 {
+    
     "has_unlocked_three_hole_course": "has_unlocked_classic_a or has_unlocked_classic_b or has_unlocked_classic_c or has_unlocked_resort_a or has_unlocked_resort_b or has_unlocked_resort_c or has_unlocked_special",
     "has_unlocked_nine_hole_course": "has_unlocked_classic_nine or has_unlocked_resort_nine",
     "has_unlocked_three_hole_course_fg": "has_unlocked_classic_a_fg or has_unlocked_classic_b_fg or has_unlocked_classic_c_fg or has_unlocked_resort_a_fg or has_unlocked_resort_b_fg or has_unlocked_resort_c_fg or has_unlocked_special_fg",
