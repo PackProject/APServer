@@ -8,6 +8,11 @@ class WSRLocation(Location):
 class WSRItem(Item):
     game = "Wii Sports Resort"
 
+class LocData(NamedTuple):
+    id: int = 0
+    region: str = ""
+    
+
 class CategoryIndex(IntEnum):
     SWORDPLAY = 0
     WAKEBOARD = 1

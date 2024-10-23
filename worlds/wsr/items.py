@@ -1,9 +1,18 @@
 from BaseClasses import Item
 from BaseClasses import ItemClassification as ItemType
+from typing import List, Dict, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from . import WSRWorld
 
 
 class WSRItem(Item):
     game = "Wii Sports Resort"
+
+def create_itempool(world: "WSRWorld") -> List[Item]:
+    itempool: List[Item] = []
+    
+
 
 
 #
