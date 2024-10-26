@@ -1,19 +1,37 @@
-from worlds.AutoWorld import World
-from .options import WSROptions
-from .regions import WSRRegion
-from .locations import WSRLocation
-from .locations import *
-from BaseClasses import Entrance
+from BaseClasses import Item, ItemClassification, Tutorial, Location, MultiWorld
+from .items import item_table, create_item, create_itempool
+from .regions import create_region
+from .locations import location_table, is_location_valid, get_locations_names, get_total_locations
+from .options import WSROptions, StampGoal, ChampionGoal, ProStatusGoal, Traps, StartingItems, SportsUnlockState, \
+                    IncludeHardStamps, IncludeLongStamps, ExcludedStamps
+from .types import CategoryIndex, SportIndex, WSRSport, ItemData
+from worlds.AutoWorld import World, WebWorld, CollectionState
+from worlds.generic.Rules import add_rule
+from typing import List, Dict, TextIO
+from worlds.LauncherComponents import Component, components, icon_paths, launch_subprocess, Type
+from Utils import local_path
 
+class WSRWeb(WebWorld):
+    #TODO
+    pass
 
 class WSRWorld(World):
+    #VARS
     game = "Wii Sports Resort"
-
+    item_name_to_id = {name: data.sport for name, data in item_table.items()}
+    location_name_to_id = get_locations_names()
     options_dataclass = WSROptions
     options: WSROptions
+    web = WSRWeb()
 
-    item_name_to_id = {}
-    location_name_to_id = {}
+    def __init__(self, multiworld: MultiWorld, player: int):
+        super().__init__(multiworld, player)
+        #TODO
+        pass
+
+    def generate_early(self):
+        #TODO: Starting Items
+        return super().generate_early()
 
     #
     # Create a list of all game regions

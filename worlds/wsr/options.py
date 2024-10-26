@@ -1,7 +1,10 @@
 from Options import Choice, Toggle, DefaultOnToggle, Range, OptionList, DeathLink, \
     PlandoConnections, PerGameCommonOptions
 from dataclasses import dataclass
+from typing import List, TYPE_CHECKING, Dict, Any
 
+if TYPE_CHECKING:
+    from . import WSRWorld
 
 class WSRPlandoConnections(PlandoConnections):
     # TODO

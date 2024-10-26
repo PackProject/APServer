@@ -14,37 +14,50 @@ class LocData(NamedTuple):
     
 
 class CategoryIndex(IntEnum):
-    SWORDPLAY = 0
-    WAKEBOARD = 1
-    FRISBEE = 2
-    ARCHERY = 3
-    BASKETBALL = 4
-    TABLE = 5
-    GOLF = 6
-    BOWLING = 7
-    CRUISING = 8
-    CANOE = 9
-    CYCLING = 10
-    AIR = 11
+    MENU = 0
+    SWORDPLAY = 1
+    WAKEBOARD = 2
+    FRISBEE = 3
+    ARCHERY = 4
+    BASKETBALL = 5
+    TABLE = 6
+    GOLF = 7
+    BOWLING = 8
+    CRUISING = 9
+    CANOE = 10
+    CYCLING = 11
+    AIR = 12
 
 class SportIndex(IntEnum):
-    DUEL = 0
-    SPEED = 1
-    SHOWDOWN = 2
-    WAKEBOARD = 3
-    DOG = 4
-    FGOLF = 5
-    ARCHERY = 6
-    THREE = 7
-    PICKUP = 8
-    RETURN = 9
-    MATCH = 10
-    GOLF = 11
-    TEN = 12
-    HUNDRED = 13
-    SPIN = 14
-    CRUISING = 15
-    CANOE = 16
-    CYCLING = 17
-    SKYDIVING = 18
-    FLYOVER = 19
+    MENU = 0
+    DUEL = 1
+    SPEED = 2
+    SHOWDOWN = 3
+    WAKEBOARD = 4
+    DOG = 5
+    FGOLF = 6
+    ARCHERY = 7
+    THREE = 8
+    PICKUP = 9
+    RETURN = 10
+    MATCH = 11
+    GOLF = 12
+    TEN = 13
+    HUNDRED = 14
+    SPIN = 15
+    CRUISING = 16
+    CANOE = 17
+    CYCLING = 18
+    SKYDIVING = 19
+    FLYOVER = 20
+    
+
+class WSRSport(NamedTuple):
+    category: CategoryIndex
+    sport: SportIndex
+
+class ItemData(NamedTuple):
+    itemType: str
+    classification: ItemClassification
+    sport: WSRSport
+
