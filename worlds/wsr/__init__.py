@@ -33,104 +33,42 @@ class WSRWorld(World):
         #TODO: Starting Items
         return super().generate_early()
 
-    #
-    # Create a list of all game regions
-    #
     def create_regions(self):
-        # Game begins from the menu region
-        menu = WSRRegion("Menu", self.player, self.multiworld)
-        self.multiworld.regions += menu
+        #TODO: create regions
+        pass
 
-# fmt: off
-        swf_vs = WSRRegion("Swordplay (Duel)", self.player, self.multiworld)
-        swf_vs.add_locations(SWF_VS_LOCATIONS, WSRLocation)
+    def create_items(self):
+        self.multiworld.itempool += create_itempool(self)
 
-        swf_prc = WSRRegion("Swordplay (Speed Slice)", self.player, self.multiworld)
-        swf_prc.add_locations(SWF_PRC_LOCATIONS, WSRLocation)
+    def set_rules(self):
+        #TODO: Set Rules
+        pass
 
-        swf_sgl = WSRRegion("Swordplay (Showdown)", self.player, self.multiworld)
-        swf_sgl.add_locations(SWF_SGL_LOCATIONS, WSRLocation)
+    def create_item(self, name: str) -> Item:
+        return create_item(self, name)
+    
+    def collect(self, state: "CollectionState", item: "Item") -> bool:
+        old_count: int = state.count(item.name, self.player)
+        change = super().collect(state,item)
+        if change and old_count == 0:
+            if "Stamp" in item.name:
+                state.prog_items[self.player]["Stamps"] += 1
+            elif "Pro Status" in item.name:
+                state.prog_items[self.player]["Pro Statuses"] += 1
+            elif "Champion" in item.name:
+                state.prog_items[self.player]["Champions"] += 1
 
-        wkb = WSRRegion("Wakeboarding", self.player, self.multiworld)
-        wkb.add_locations(WKB_LOCATIONS, WSRLocation)
+        return change
+    
+    def remove(self, state: "CollectionState", item: "Item") -> bool:
+        old_count: int = state.count(item.name, self.player)
+        change = super().collect(state,item)
+        if change and old_count == 1:
+            if "Stamp" in item.name:
+                state.prog_items[self.player]["Stamps"] -= 1
+            elif "Pro Status" in item.name:
+                state.prog_items[self.player]["Pro Statuses"] -= 1
+            elif "Champion" in item.name:
+                state.prog_items[self.player]["Champions"] -= 1
 
-        fld = WSRRegion("Frisbee (Frisbee Dog)", self.player, self.multiworld)
-        fld.add_locations(FLD_LOCATIONS, WSRLocation)
-
-        dgl = WSRRegion("Frisbee (Frisbee Golf)", self.player, self.multiworld)
-        dgl.add_locations(DGL_LOCATIONS, WSRLocation)
-
-        arc = WSRRegion("Archery", self.player, self.multiworld)
-        arc.add_locations(ARC_LOCATIONS, WSRLocation)
-
-        bsk_3pt = WSRRegion("Basketball (3-Point Contest)", self.player, self.multiworld)
-        bsk_3pt.add_locations(BSK_3PT_LOCATIONS, WSRLocation)
-
-        bsk_vs = WSRRegion("Basketball (Pickup Game)", self.player, self.multiworld)
-        bsk_vs.add_locations(BSK_VS_LOCATIONS, WSRLocation)
-
-        png_vs = WSRRegion("Table Tennis (Match)", self.player, self.multiworld)
-        png_vs.add_locations(PNG_VS_LOCATIONS, WSRLocation)
-
-        png_ret = WSRRegion("Table Tennis (Return Challenge)", self.player, self.multiworld)
-        png_ret.add_locations(PNG_RET_LOCATIONS, WSRLocation)
-
-        glf = WSRRegion("Golf", self.player, self.multiworld)
-        glf.add_locations(GLF_LOCATIONS, WSRLocation)
-
-        bwl_std = WSRRegion("Bowling (Standard Game)", self.player, self.multiworld)
-        bwl_std.add_locations(BWL_STD_LOCATIONS, WSRLocation)
-
-        bwl_100 = WSRRegion("Bowling (100-Pin Game)", self.player, self.multiworld)
-        bwl_100.add_locations(BWL_100_LOCATIONS, WSRLocation)
-
-        bwl_wal = WSRRegion("Bowling (Spin Control)", self.player, self.multiworld)
-        bwl_wal.add_locations(BWL_WAL_LOCATIONS, WSRLocation)
-
-        jsk = WSRRegion("Power Cruising (Slalom Course)", self.player, self.multiworld)
-        jsk.add_locations(JSK_LOCATIONS, WSRLocation)
-
-        can = WSRRegion("Canoeing (Speed Challenge)", self.player, self.multiworld)
-        can.add_locations(CAN_LOCATIONS, WSRLocation)
-
-        bic = WSRRegion("Cycling (Road Race)", self.player, self.multiworld)
-        bic.add_locations(BIC_LOCATIONS, WSRLocation)
-
-        pln = WSRRegion("Air Sports (Island Flyover)", self.player, self.multiworld)
-        pln.add_locations(PLN_LOCATIONS, WSRLocation)
-
-        omk = WSRRegion("Air Sports (Skydiving)", self.player, self.multiworld)
-        omk.add_locations(OMK_LOCATIONS, WSRLocation)
-# fmt: on
-
-        seq_regions = [
-            swf_vs,
-            swf_prc,
-            swf_sgl,
-            wkb,
-            fld,
-            dgl,
-            arc,
-            bsk_3pt,
-            bsk_vs,
-            png_vs,
-            png_ret,
-            glf,
-            bwl_std,
-            bwl_100,
-            bwl_wal,
-            jsk,
-            can,
-            bic,
-            pln,
-            omk
-        ]
-
-        # All categories can exit to the main menu
-        for it in seq_regions:
-            it.add_exits(menu)
-
-        # menu.entrances += seq_regions
-
-        # The menu can exit to any of the categories
-        # menu.exits += seq_regions
+        return change
