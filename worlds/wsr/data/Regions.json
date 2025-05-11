@@ -262,13 +262,13 @@
     {
         "region_name": "3-Stage Race",
         "exits": {
-            "Canoe Game": "True"
+            "Cycling Game": "True"
         }
     },
     {
         "region_name": "6-Stage Race",
         "exits": {
-            "Canoe Game": "True"
+            "Cycling Game": "True"
         }
     },
     {
@@ -280,7 +280,8 @@
             "Swordplay Duel (Stamp) - One-Hit Wonder": "True",
             "Swordplay Duel (Stamp) - Last Mii Standing": "True",
             "Swordplay Duel - Pro Status": "True",
-            "Swordplay Duel - Beat The Champion (Matt)": "True"
+            "Swordplay Duel - Beat The Champion (Matt)": "True",
+            "Swordplay Duel - First Win": "True"
         }
     },
     {
@@ -294,18 +295,39 @@
             "Swordplay Speed Slice - Pro Status": "True",
             "Swordplay Speed Slice - Beat The Champion (Matt):": "True",
             "Swordplay Speed Slice - First Win": "True"
+            
         }
     },
     {
         "region_name": "Showdown",
         "locations": {
-            "Swordplay Showdown (Stamp) - Not a Scrath": "True",
+            "Swordplay Showdown (Stamp) - Not a Scratch": "True",
             "Swordplay Showdown (Stamp) - Sword Fighter": "has_unlocked_normal_stages",
             "Swordplay Showdown (Stamp) - Perfect 10": "has_unlocked_normal_stage_ten",
             "Swordplay Showdown (Stamp) - Swordmaster": "has_unlocked_reverse_stage_ten",
             "Swordplay Showdown (Stamp) - Untouchable": "has_unlocked_reverse_stages",
             "Swordplay Showdown - Pro Status": "True",
-            "Swordplay Showdown - Complete stage": "True"
+            "Swordplay Showdown - Complete stage": "True",
+            "Swordplay Showdown - Complete Stage 1": "has_unlocked_normal_stage_one",
+            "Swordplay Showdown - Complete Stage 2": "has_unlocked_normal_stage_two",
+            "Swordplay Showdown - Complete Stage 3": "has_unlocked_normal_stage_three",
+            "Swordplay Showdown - Complete Stage 4": "has_unlocked_normal_stage_four",
+            "Swordplay Showdown - Complete Stage 5": "has_unlocked_normal_stage_five",
+            "Swordplay Showdown - Complete Stage 6": "has_unlocked_normal_stage_six",
+            "Swordplay Showdown - Complete Stage 7": "has_unlocked_normal_stage_seven",
+            "Swordplay Showdown - Complete Stage 8": "has_unlocked_normal_stage_eight",
+            "Swordplay Showdown - Complete Stage 9": "has_unlocked_normal_stage_nine",
+            "Swordplay Showdown - Complete Stage 10": "has_unlocked_normal_stage_ten",
+            "Swordplay Showdown - Complete Stage 11": "has_unlocked_reverse_stage_one",
+            "Swordplay Showdown - Complete Stage 12": "has_unlocked_reverse_stage_two",
+            "Swordplay Showdown - Complete Stage 13": "has_unlocked_reverse_stage_three",
+            "Swordplay Showdown - Complete Stage 14": "has_unlocked_reverse_stage_four",
+            "Swordplay Showdown - Complete Stage 15": "has_unlocked_reverse_stage_five",
+            "Swordplay Showdown - Complete Stage 16": "has_unlocked_reverse_stage_six",
+            "Swordplay Showdown - Complete Stage 17": "has_unlocked_reverse_stage_seven",
+            "Swordplay Showdown - Complete Stage 18": "has_unlocked_reverse_stage_eight",
+            "Swordplay Showdown - Complete Stage 19": "has_unlocked_reverse_stage_nine",
+            "Swordplay Showdown - Complete Stage 20": "has_unlocked_reverse_stage_ten"
         }
     },
     {
@@ -325,7 +347,7 @@
         "region_name": "Frisbee Dog",
         "locations": {
             "Frisbee Dog (Stamp) - Good Dog": "(FD_Frisbee, 1)",
-            "Frisbee Dog (Stamp) - Balloon Animal": "(FD_Frisbee, 10)",
+            "Frisbee Dog (Stamp) - Balloon Animal": "(FD_Frisbee, 5)",
             "Frisbee Dog (Stamp) - A for Effort": "(FD_Frisbee, 10)",
             "Frisbee Dog (Stamp) - Perfect Target": "(FD_Frisbee, 10)",
             "Frisbee Dog (Stamp) - Golden Arm": "(FD_Frisbee, 10)",
@@ -343,7 +365,28 @@
             "Frisbee Golf - Pro Status": "((Progressive_Frisbee, 2) or (Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
             "Frisbee Golf - Get A Par": "((Progressive_Frisbee, 2) or (Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
             "Frisbee Golf - Get A Birdie": "((Progressive_Frisbee, 3) or (Frisbee_Driver, 1)",
-            "Frisbee Golf - Get An Eagle": "((Progressive_Frisbee, 3) or (Frisbee_Driver, 1)"
+            "Frisbee Golf - Get An Eagle": "((Progressive_Frisbee, 3) or (Frisbee_Driver, 1)",
+            "Frisbee Golf - Complete Hole 1": "(FG_Hole_1, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 2": "(FG_Hole_2, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 3": "(FG_Hole_3, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 4": "(FG_Hole_4, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 5": "(FG_Hole_5, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 6": "(FG_Hole_6, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 7": "(FG_Hole_7, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 8": "(FG_Hole_8, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 9": "(FG_Hole_9, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 10": "(FG_Hole_10, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 11": "(FG_Hole_11, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 12": "(FG_Hole_12, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 13": "(FG_Hole_13, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 14": "(FG_Hole_14, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 15": "(FG_Hole_15, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 16": "(FG_Hole_16, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 17": "(FG_Hole_17, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 18": "(FG_Hole_18, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 19": "(FG_Hole_19, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 20": "(FG_Hole_20, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))",
+            "Frisbee Golf - Complete Hole 21": "(FG_Hole_21, 1) and (Progressive_Frisbee, 2) or ((Frisbee_Driver, 1) or (Frisbee_Midrange, 1))"
         }
     },
     {
@@ -411,7 +454,28 @@
             "Golf (Stamp) - King of Clubs": "golf_high_score_logic",
             "Golf (Stamp) - Ace of Clubs": "golf_high_score_logic",
             "Golf (Stamp) - Hole in One": "golf_hole_in_one_logic",
-            "Golf - Pro Status": "golf_high_score_logic"
+            "Golf - Pro Status": "golf_high_score_logic",
+            "Golf - Complete Hole 1": "(Golf_Hole_1, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 2": "(Golf_Hole_2, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 3": "(Golf_Hole_3, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 4": "(Golf_Hole_4, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 5": "(Golf_Hole_5, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 6": "(Golf_Hole_6, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 7": "(Golf_Hole_7, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 8": "(Golf_Hole_8, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 9": "(Golf_Hole_9, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 10": "(Golf_Hole_10, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 11": "(Golf_Hole_11, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 12": "(Golf_Hole_12, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 13": "(Golf_Hole_13, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 14": "(Golf_Hole_14, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 15": "(Golf_Hole_15, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 16": "(Golf_Hole_16, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 17": "(Golf_Hole_17, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 18": "(Golf_Hole_18, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 19": "(Golf_Hole_19, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 20": "(Golf_Hole_20, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)",
+            "Golf - Complete Hole 21": "(Golf_Hole_21, 1) and (Progressive_Club, 2) or ((Club_Wedge, 1) or (Club_9Iron, 1) or (Club_7Iron, 1) or (Club_5Iron, 1) or (Club_3Iron, 1) or (Club_3Wood, 1) or (Club_Driver, 1)) and (Golf_Turning, 1)"
         }
     },
     {
@@ -422,7 +486,8 @@
             "Bowling Standard (Stamp) - High Roller": "(Bowling_Turning, 1) or (Bowling_Moving, 1) or (Bowling_Spin, 1)",
             "Bowling Standard (Stamp) - Pin Dropper": "(Bowling_Turning, 1) and (Bowling_Moving, 1) and (Bowling_Spin, 1)",
             "Bowling Standard (Stamp) - Perfect Game": "(Bowling_Turning, 1) and (Bowling_Moving, 1) and (Bowling_Spin, 1)",
-            "Bowling Standard - Pro Status": "(Bowling_Turning, 1) or (Bowling_Moving, 1) or (Bowling_Spin, 1)"
+            "Bowling Standard - Pro Status": "(Bowling_Turning, 1) or (Bowling_Moving, 1) or (Bowling_Spin, 1)",
+            "Bowling 10 Pin - First Strike": "(Bowling_Turning, 1) or (Bowling_Moving, 1) or (Bowling_Spin, 1)"
         }
     },
     {
@@ -433,7 +498,8 @@
             "Bowling 100-Pin (Stamp) - Off the Wall": "(Bowling_100_Turning, 1)",
             "Bowling 100-Pin (Stamp) - Secret Strike": "(Bowling_100_Moving, 1)",
             "Bowling 100-Pin (Stamp) - Pin Dropper": "(Bowling_100_Turning, 1) and (Bowling_100_Moving, 1) and (Bowling_100_Spin, 1)",
-            "Bowling 100-Pin - Pro Status": "(Bowling_100_Turning, 1) or (Bowling_100_Moving, 1) or (Bowling_100_Spin, 1)"
+            "Bowling 100-Pin - Pro Status": "(Bowling_100_Turning, 1) or (Bowling_100_Moving, 1) or (Bowling_100_Spin, 1)",
+            "Bowling 100-Pin - First Strike": "(Bowling_100_Turning, 1) or (Bowling_100_Moving, 1) or (Bowling_100_Spin, 1)"
         }
     },
     {
@@ -444,7 +510,8 @@
             "Spin Control (Stamp) - Head First": "(SC_Turning, 1) and (SC_Moving, 1) and (SC_Spin, 1)",
             "Spin Control (Stamp) - English Major": "(SC_Turning, 1) and (SC_Moving, 1) and (SC_Spin, 1)",
             "Spin Control (Stamp) - Pin Dropper": "(SC_Turning, 1) and (SC_Moving, 1) and (SC_Spin, 1)",
-            "Spin Control - Pro Status": "(SC_Turning, 1) and (SC_Moving, 1) and (SC_Spin, 1)"
+            "Spin Control - Pro Status": "(SC_Turning, 1) and (SC_Moving, 1) and (SC_Spin, 1)",
+            "Spin Control - First Strike": "(SC_Turning, 1) or (SC_Moving, 1) or (SC_Spin, 1)"
         }
     },
     {
@@ -477,7 +544,13 @@
             "Cycling (Stamp) - 1-Stage Master": "(Cycling_Heart, 3) and ((Cycling_Stage_A1, 1) or (Cycling_Stage_A2, 1) or (Cycling_Stage_A3) or (Cycling_Stage_B1, 1) or (Cycling_Stage_B2, 1) or (Cycling_Stage_B3, 1))",
             "Cycling (Stamp) - 3-Stage Master": "(Cycling_Heart, 3) and ((Cycling_Three_Stage_A, 1) or (Cycling_Three_Stage_B, 1))",
             "Cycling (Stamp) - 6-Stage Master": "(Cycling_6_Stage, 1) and (Cycling_Heart, 3) and (Cycling_Drafting, 1)",
-            "Cycling - Pro Status": "(Cycling_Heart, 3) or ((Cycling_Heart, 2) and (Cycling_Drafting, 1))"
+            "Cycling - Pro Status": "(Cycling_Heart, 3) or ((Cycling_Heart, 2) and (Cycling_Drafting, 1))",
+            "Cycling - Complete Stage 1": "(Cycling_Stage_A1, 1)",
+            "Cycling - Complete Stage 2": "(Cycling_Stage_A2, 1)",
+            "Cycling - Complete Stage 3": "(Cycling_Stage_A3, 1)",
+            "Cycling - Complete Stage 4": "(Cycling_Stage_B1, 1)",
+            "Cycling - Complete Stage 5": "(Cycling_Stage_B2, 1)",
+            "Cycling - Complete Stage 6": "(Cycling_Stage_B3, 1)"
         }
     },
     {

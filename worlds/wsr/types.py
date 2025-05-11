@@ -10,8 +10,8 @@ class WSRItem(Item):
 
 class LocData(NamedTuple):
     id: int = 0
-    region: str = ""
-    
+    category: int = 0
+    sport: int = 0
 
 class CategoryIndex(IntEnum):
     MENU = 0

@@ -66,8 +66,12 @@ class SportsUnlockState(Choice):
 
 
 class IncludeHardStamps(Toggle):
-    """Enables stamps that are deemed too difficult for casual players such as `Ace of Clubs` and `Pure Shooter`"""
+    """Enables stamps that are deemed too difficult for casual players such as `Power Cruiser` and `Pop Frenzy`"""
     display_name = "Include Hard Stamps"
+
+class IncludeImpossibleStamps(Toggle):
+    """Enables stamps that are deemed nearly impossible to complete for casual players such as `Cut the Red Tape` and `Ace of Clubs`"""
+    display_name = "Include Impossible Stamps"
 
 
 class IncludeLongStamps(Toggle):
@@ -231,6 +235,7 @@ class WSROptions(PerGameCommonOptions):
     starting_items: StartingItems
     sports_unlock_state: SportsUnlockState
     include_hard_stamps: IncludeHardStamps
+    include_impossible_stamps: IncludeImpossibleStamps
     include_long_stamps: IncludeLongStamps
     exluded_stamps: ExcludedStamps
     death_link: DeathLink
