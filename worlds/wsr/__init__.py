@@ -11,9 +11,42 @@ from typing import List, Dict, TextIO
 from worlds.LauncherComponents import Component, components, icon_paths, launch_subprocess, Type
 from Utils import local_path
 
+def run_client() -> None:
+    """
+    Launch the Wii Sports Resort Client
+    """
+    print("Running WSR Client")
+    from .WSRClient import main
+
+    launch_subprocess(main, name="WSRClient")
+
+components.append(
+    Component(
+        "Wii Sports Resort Client",
+        func=run_client,
+        component_type=Type.CLIENT,
+        file_identifier=(".apwsr"),
+        icon="Wii Sports Resort"
+    )
+)
+icon_paths["Wii Sports Resort"] = "ap:worlds.wsr/assets/icon.png"
+
 class WSRWeb(WebWorld):
-    #TODO
-    pass
+    """
+    This class handles the web interface.
+
+    The web interface includes the setup guide and the options page for generating YAMLs.
+    """
+    tutorials = [Tutorial(
+        "Wii Sports Resort Setup Guide",
+        "A guide to settup up Wii Sports Resort for archipelago on your computer.",
+        "English",
+        "setup_en.md",
+        "setup/en",
+        ["Kiwi", "Plyd", "Cyndifusic", "Dragonz"]
+    )]
+    theme = "ice"
+    rich_text_options_doc = True
 
 class WSRWorld(World):
     #VARS

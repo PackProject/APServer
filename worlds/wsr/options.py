@@ -6,10 +6,6 @@ from typing import List, TYPE_CHECKING, Dict, Any
 if TYPE_CHECKING:
     from . import WSRWorld
 
-class WSRPlandoConnections(PlandoConnections):
-    # TODO
-    pass
-
 
 class StampGoal(Range):
     """Number of stamps required to finish the game"""
@@ -227,7 +223,6 @@ class SwordColorShuffle(Choice):
 @dataclass
 class WSROptions(PerGameCommonOptions):
     # Logic Related Options
-    plando_connections: WSRPlandoConnections
     stamp_goal: StampGoal
     champion_goal: ChampionGoal
     pro_status_goal: ProStatusGoal
