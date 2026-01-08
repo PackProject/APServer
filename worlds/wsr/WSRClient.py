@@ -28,6 +28,7 @@ class AsyncUDPProtocol(asyncio.DatagramProtocol):
         self.client: AsyncWiiMemoryClient = client
     
     def datagram_received(self, data, addr):
+        print(f"Received UDP from {addr}: {data.hex()}")
         self.client.handle_response(data)
 
     def error_received(self, exc):
@@ -38,7 +39,7 @@ class CommandRequest:
     def __init__(self, command: bytes, timeout: float = 10.0):
         self.command = command
         self.timeout = timeout
-        self.future = asyncio.Future()
+        self.future = asyncio.get_running_loop().create_future() # asyncio.Future()
         self.timestamp = time.time()
 
 class AsyncWiiMemoryClient:
@@ -55,18 +56,20 @@ class AsyncWiiMemoryClient:
 
     async def connect(self):
         """Establish connection to the Wii"""
-        print("connect function")
         try:
             loop = asyncio.get_event_loop()
+            logger.info(f"ip: {self.wii_ip}")
+            logger.info(f"port: {self.port}")
             self.transport, self.protocol = await loop.create_datagram_endpoint(
                 lambda: AsyncUDPProtocol(self),
+                local_addr=("10.0.0.116", 51235),
                 remote_addr=(self.wii_ip, self.port)
             )
             sock = self.transport.get_extra_info('socket')
             self.my_ip = sock.getsockname()[0]
             self.my_port = sock.getsockname()[1]
 
-            print("trying to connect...")
+            logger.info("trying to connect...")
 
             self.queue_processor_task = asyncio.create_task(self._process_command_queue())
 
@@ -96,11 +99,21 @@ class AsyncWiiMemoryClient:
 
         self.established = False
 
-    async def establish_connection(self, timeout=1):
+    def handle_response(self, data):
+        """Handle incoming UDP response"""
+        if self.current_request and not self.current_request.future.done():
+            self.current_request.future.set_result(data)
+            self.current_request = None
+        else:
+            print(f"Received unexpected response: {data}")
+
+    async def establish_connections(self, timeout=1):
         """Try to send a packet with IP and Port to establish connection to Wii server"""
         command = b'\x00' + socket.inet_aton(self.my_ip) + struct.pack('>H', self.my_port)
         
         response = await self._send_command_queued(command, timeout)
+
+        logger.info(response)
         
         if len(response) > 0:
             return True
@@ -129,6 +142,7 @@ class AsyncWiiMemoryClient:
 
                 if self.transport and not request.future.cancelled():
                     self.current_request = request
+                    print(f"Sending UDP packet to {self.wii_ip}:{self.port}: {request.command.hex()}")
                     self.transport.sendto(request.command)
 
                     asyncio.create_task(self._handle_request_timeout(request))
@@ -170,6 +184,19 @@ class AsyncWiiMemoryClient:
             self.transport.close()
             self.transport = None
 
+class WSRCommandProcessor(ClientCommandProcessor):
+    """
+    Command processor for WSR client commands
+    """
+
+    def __init__(self, ctx: CommonContext):
+        """
+        Initialize the command processor with the provided context
+
+        @param ctx: Contex for the client
+        """
+        super().__init__(ctx)
+
 
 class WSRContext(CommonContext):
     """
@@ -177,6 +204,9 @@ class WSRContext(CommonContext):
 
     Manages the connection between the server and the console.
     """
+
+    command_processor = WSRCommandProcessor
+    game: str = "Wii Sports Resort"
 
     def __init__(self, server_address: Optional[str], password: Optional[str]) -> None:
         """
@@ -191,7 +221,7 @@ class WSRContext(CommonContext):
         self.sync_task: Optional[asyncio.Task[None]] = None
         self.awaiting_rom: bool = False
         self.wii_memory_client: AsyncWiiMemoryClient = None
-        self.wii_ip: str = "0.0.0.0"
+        self.wii_ip: str = "10.0.0.116"
         self.socket = None
         self.client_socket = None
 
@@ -219,7 +249,7 @@ class WSRContext(CommonContext):
             self.wii_memory_client = None
 
     def is_hooked(self):
-        return False
+        return self.wii_memory_client and self.wii_memory_client.established
 
     def make_gui(self) -> type["kvui.GameManager"]:
         """
@@ -237,6 +267,7 @@ class WSRContext(CommonContext):
 
         @param password_requested: Whether the server requires a password. Defaults to `False`.
         """
+        logger.info("Authenticating server...")
         if password_requested and not self.password:
             await super().server_auth(password_requested)
         if not self.auth:
@@ -256,8 +287,10 @@ async def do_sync_task(ctx: WSRContext) -> None:
     while not ctx.exit_event.is_set():
         try:
             if ctx.is_hooked():
-                await ctx.give_items()
-                await ctx.check_locations()
+
+                #await ctx.give_items()
+                #await ctx.check_locations()
+                logger.info(f"awaiting rom: {ctx.awaiting_rom}")
                 if ctx.awaiting_rom:
                     await ctx.server_auth()
                 await asyncio.sleep(0.1)
