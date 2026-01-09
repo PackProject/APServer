@@ -187,17 +187,18 @@ class AsyncWiiMemoryClient:
             self.transport = None
 
 
-    async def write_bytes(self, address, data, timeout=2):
-        command = struct.pack('>BII', 0x02, address, len(data)) + data
-        checksum = sum(command) & 0xFF
-        command += checksum.to_bytes(1, 'big')
+    async def write_bytes(self, data, timeout=2):
+        data_len = len(data)
+        command = data_len.to_bytes(data_len) + data
+
+        logger.info(f"Command: {command} | Data Length: {data_len} | Data: {data}")
 
         response = await self._send_command_queued(command, timeout)
 
         if len(response) == 1:
             return True
         else:
-            raise Exception(f"Write failed at address {address}")
+            raise Exception(f"Write failed with data {data}")
 
 class WSRCommandProcessor(ClientCommandProcessor):
     """
@@ -318,8 +319,13 @@ class WSRContext(CommonContext):
         
         item_id = wsr_items[item_name].item_id
 
+        logger.info(f"item id: {item_id}")
+
+        item_id_byte: bytes = item_id.to_bytes(2, byteorder="big")
+
+        logger.info(f"item id in bytes: {item_id_byte}")
         
-        if await self.wii_memory_client.write_bytes(0x80532020, item_id.to_bytes(1, byteorder="big")):
+        if await self.wii_memory_client.write_bytes(item_id_byte):
             logger.info("sent item")
             return True
         
@@ -344,7 +350,6 @@ async def do_sync_task(ctx: WSRContext) -> None:
     while not ctx.exit_event.is_set():
         try:
             if ctx.is_hooked():
-
                 await ctx.give_items()
                 #await ctx.check_locations()
                 if ctx.awaiting_rom:
