@@ -56,8 +56,9 @@ class WSRSport(NamedTuple):
     category: CategoryIndex
     sport: SportIndex
 
-class ItemData(NamedTuple):
+class WSRItemData(NamedTuple):
     itemType: str
     classification: ItemClassification
     sport: WSRSport
+    item_id: Optional[int]
 

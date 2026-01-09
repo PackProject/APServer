@@ -20,6 +20,8 @@ from CommonClient import (
 )
 from NetUtils import ClientStatus, NetworkItem
 
+from .items import wsr_items
+
 if TYPE_CHECKING:
     import kvui
 
@@ -62,7 +64,7 @@ class AsyncWiiMemoryClient:
             logger.info(f"port: {self.port}")
             self.transport, self.protocol = await loop.create_datagram_endpoint(
                 lambda: AsyncUDPProtocol(self),
-                local_addr=("10.0.0.116", 51235),
+                local_addr=("10.0.0.116", 51235), # try empty string for ip/port 
                 remote_addr=(self.wii_ip, self.port)
             )
             sock = self.transport.get_extra_info('socket')
@@ -184,6 +186,19 @@ class AsyncWiiMemoryClient:
             self.transport.close()
             self.transport = None
 
+
+    async def write_bytes(self, address, data, timeout=2):
+        command = struct.pack('>BII', 0x02, address, len(data)) + data
+        checksum = sum(command) & 0xFF
+        command += checksum.to_bytes(1, 'big')
+
+        response = await self._send_command_queued(command, timeout)
+
+        if len(response) == 1:
+            return True
+        else:
+            raise Exception(f"Write failed at address {address}")
+
 class WSRCommandProcessor(ClientCommandProcessor):
     """
     Command processor for WSR client commands
@@ -278,6 +293,48 @@ class WSRContext(CommonContext):
             return
         await self.send_connect()
 
+    async def give_items(self) -> None:
+        """
+        Gives player all outstanding items they have not yet received
+        
+        @param self: The WSR client context
+        """
+        if await self.can_receive_items():
+            for item in self.items_received:
+                await self._give_item(item)
+        
+        await self._give_item("Bowling (Standard) - Moving")
+
+    async def _give_item(self, item_name: str) -> bool:
+        """
+        Give an item to the player.
+
+        @param self: The WSR client context
+        @param item_name: The name of the item
+        @return: whether the process was successful
+        """
+        if not await self.can_receive_items():
+            return False
+        
+        item_id = wsr_items[item_name].item_id
+
+        
+        if await self.wii_memory_client.write_bytes(0x80532020, item_id.to_bytes(1, byteorder="big")):
+            logger.info("sent item")
+            return True
+        
+        logger.info("failed to send item")
+        return False
+
+
+
+    async def can_receive_items(self) -> bool:
+        return True
+
+
+
+
+
 async def do_sync_task(ctx: WSRContext) -> None:
     """
     Manages the connection to the game
@@ -288,9 +345,8 @@ async def do_sync_task(ctx: WSRContext) -> None:
         try:
             if ctx.is_hooked():
 
-                #await ctx.give_items()
+                await ctx.give_items()
                 #await ctx.check_locations()
-                logger.info(f"awaiting rom: {ctx.awaiting_rom}")
                 if ctx.awaiting_rom:
                     await ctx.server_auth()
                 await asyncio.sleep(0.1)
