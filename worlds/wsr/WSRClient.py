@@ -187,11 +187,19 @@ class AsyncWiiMemoryClient:
             self.transport = None
 
 
-    async def write_bytes(self, data, timeout=2):
-        data_len = len(data)
-        command = data_len.to_bytes(data_len) + data
+    async def write_bytes(self, data, packet_type_id=0, timeout=2):
+        if packet_type_id == 0:
+            raise Exception(f"invalid packet type id with data: {data}")
 
-        logger.info(f"Command: {command} | Data Length: {data_len} | Data: {data}")
+        data_len = len(data)
+
+        packet_size = data_len.to_bytes(4, byteorder="big")
+
+        packet_type_id = packet_type_id.to_bytes(1, byteorder="big")
+
+        command = packet_size + packet_type_id + data
+
+        logger.info(f"Command: {command} | Data Length: {data_len} | Data: {data.hex()}")
 
         response = await self._send_command_queued(command, timeout)
 
@@ -325,7 +333,7 @@ class WSRContext(CommonContext):
 
         logger.info(f"item id in bytes: {item_id_byte}")
         
-        if await self.wii_memory_client.write_bytes(item_id_byte):
+        if await self.wii_memory_client.write_bytes(item_id_byte, packet_type_id=1):
             logger.info("sent item")
             return True
         
