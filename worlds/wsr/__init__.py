@@ -26,7 +26,8 @@ components.append(
         func=run_client,
         component_type=Type.CLIENT,
         file_identifier=(".apwsr"),
-        icon="Wii Sports Resort"
+        icon="Wii Sports Resort",
+        description="A client for Wii Sports Resort. Supports Dolphin and real Wii consoles."
     )
 )
 icon_paths["Wii Sports Resort"] = "ap:worlds.wsr/assets/icon.png"
