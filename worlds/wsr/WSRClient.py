@@ -64,7 +64,7 @@ class AsyncWiiMemoryClient:
             logger.info(f"port: {self.port}")
             self.transport, self.protocol = await loop.create_datagram_endpoint(
                 lambda: AsyncUDPProtocol(self),
-                local_addr=("10.0.0.116", 51235), # try empty string for ip/port 
+                local_addr=("", 51235), # try empty string for ip/port 
                 remote_addr=(self.wii_ip, self.port)
             )
             sock = self.transport.get_extra_info('socket')
@@ -111,6 +111,12 @@ class AsyncWiiMemoryClient:
 
     async def establish_connections(self, timeout=1):
         """Try to send a packet with IP and Port to establish connection to Wii server"""
+        packet_size = 7
+        
+        command = packet_size.to_bytes(4, byteorder="big")
+
+        response = await self._send_command_queued(command, timeout)
+
         command = b'\x00' + socket.inet_aton(self.my_ip) + struct.pack('>H', self.my_port)
         
         response = await self._send_command_queued(command, timeout)
@@ -251,7 +257,7 @@ class WSRContext(CommonContext):
         self.last_rcvd_index = -1
         self.awaiting_rom: bool = False
         self.wii_memory_client: AsyncWiiMemoryClient = None
-        self.wii_ip: str = "10.0.0.116"
+        self.wii_ip: str = "0.0.0.0"
         self.socket = None
         self.client_socket = None
 
