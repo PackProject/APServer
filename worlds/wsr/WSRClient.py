@@ -7,6 +7,7 @@ import textwrap
 import socket
 import struct
 import threading
+from enum import IntEnum
 from typing import TYPE_CHECKING, Any, List, Optional
 
 import Utils
@@ -44,6 +45,11 @@ class CommandRequest:
         self.future = asyncio.get_running_loop().create_future() # asyncio.Future()
         self.timestamp = time.time()
 
+class CommandID(IntEnum):
+    CONNECT = 0
+    DISCONNECT = 1
+    ITEM = 2
+
 class AsyncWiiMemoryClient:
     def __init__(self, wii_ip, port=51234):
         self.wii_ip = wii_ip
@@ -64,7 +70,7 @@ class AsyncWiiMemoryClient:
             logger.info(f"port: {self.port}")
             self.transport, self.protocol = await loop.create_datagram_endpoint(
                 lambda: AsyncUDPProtocol(self),
-                local_addr=("", 51235), # try empty string for ip/port 
+                local_addr=("0.0.0.0", 51235), # try empty string for ip/port 
                 remote_addr=(self.wii_ip, self.port)
             )
             sock = self.transport.get_extra_info('socket')
@@ -111,22 +117,9 @@ class AsyncWiiMemoryClient:
 
     async def establish_connections(self, timeout=1):
         """Try to send a packet with IP and Port to establish connection to Wii server"""
-        packet_size = 7
-        
-        command = packet_size.to_bytes(4, byteorder="big")
-
-        response = await self._send_command_queued(command, timeout)
-
-        command = b'\x00' + socket.inet_aton(self.my_ip) + struct.pack('>H', self.my_port)
-        
-        response = await self._send_command_queued(command, timeout)
-
-        logger.info(response)
-        
-        if len(response) > 0:
-            return True
-        else:
-            raise Exception(f"Establishing UDP connection failed")
+        # tell the wii who to return packets to
+        packet = socket.inet_aton(self.my_ip) + struct.pack('>H', self.my_port)
+        await self.send_packet(packet, packet_type_id=CommandID.CONNECT)
         
     async def _send_command_queued(self, command: bytes, timeout=2):
         """Queue up command to read/write to console"""
@@ -174,16 +167,9 @@ class AsyncWiiMemoryClient:
         except asyncio.CancelledError:
             pass
         
-    async def signal_dc(self, timeout=2) -> bytes:
+    async def signal_dc(self, timeout=2):
         """Send a signal to the wii that the client lost connection"""
-        command = struct.pack('>B', 0x05) # DISCONNECT - 0x05
-
-        response = await self._send_command_queued(command, timeout)
-
-        if len(response) > 0:
-            return response
-        else:
-            raise Exception(f"Read failed at address")
+        await self.send_packet(bytes(), packet_type_id=CommandID.DISCONNECT)
         
     def close(self):
         """Close connection"""
@@ -192,32 +178,24 @@ class AsyncWiiMemoryClient:
             self.transport.close()
             self.transport = None
 
+    async def send_packet(self, data, packet_type_id, timeout=2):
+        """Send a single packet to the wii client"""
 
-    async def write_bytes(self, data, packet_type_id=0, timeout=2):
-        if packet_type_id == 0:
-            raise Exception(f"invalid packet type id with data: {data}")
+        packet = bytearray()
+        packet += struct.pack(">B", packet_type_id) # id: u8
+        packet += data                              # data: byte[]
 
-        data_len = len(data)
+        if len(packet) > 512:
+            raise Exception("Cannot send more than 512 bytes per packet")
 
-        packet_size = data_len.to_bytes(4, byteorder="big")
+        print(f"[send_packet] id={packet_type_id}, data={data}")
 
-        response = await self._send_command_queued(packet_size, timeout)
-
-        if len(response) != 1:
-            raise Exception(f"Write failed with data {data}")
-
-        packet_type_id = packet_type_id.to_bytes(1, byteorder="big")
-
-        command = packet_type_id + data
-
-        logger.info(f"Command: {command} | Data Length: {data_len} | Data: {data.hex()}")
-
-        response = await self._send_command_queued(command, timeout)
-
-        if len(response) == 1:
+        # expect 0xAA byte for ack
+        response = await self._send_command_queued(packet, timeout)
+        if len(response) == 1 and response[0] == 0xAA:
             return True
-        else:
-            raise Exception(f"Write failed with data {data}")
+        
+        raise Exception(f"Packet went unacknowledged: {packet}")
 
 class WSRCommandProcessor(ClientCommandProcessor):
     """
@@ -372,7 +350,7 @@ class WSRContext(CommonContext):
 
         logger.info(f"item id in bytes: {item_id_byte}")
         
-        if await self.wii_memory_client.write_bytes(item_id_byte, packet_type_id=1):
+        if await self.wii_memory_client.send_packet(item_id_byte, packet_type_id=CommandID.ITEM):
             logger.info("sent item")
             return True
         
