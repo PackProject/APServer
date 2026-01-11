@@ -195,9 +195,14 @@ class AsyncWiiMemoryClient:
 
         packet_size = data_len.to_bytes(4, byteorder="big")
 
+        response = await self._send_command_queued(packet_size, timeout)
+
+        if len(response) != 1:
+            raise Exception(f"Write failed with data {data}")
+
         packet_type_id = packet_type_id.to_bytes(1, byteorder="big")
 
-        command = packet_size + packet_type_id + data
+        command = packet_type_id + data
 
         logger.info(f"Command: {command} | Data Length: {data_len} | Data: {data.hex()}")
 
@@ -243,6 +248,7 @@ class WSRContext(CommonContext):
         super().__init__(server_address, password)
         self.items_rcvd: list[tuple[NetworkItem, int]] = []
         self.sync_task: Optional[asyncio.Task[None]] = None
+        self.last_rcvd_index = -1
         self.awaiting_rom: bool = False
         self.wii_memory_client: AsyncWiiMemoryClient = None
         self.wii_ip: str = "10.0.0.116"
@@ -302,6 +308,33 @@ class WSRContext(CommonContext):
             return
         await self.send_connect()
 
+    def on_package(self, cmd: str, args: dict[str, Any]) -> None:
+        """
+        Handle incoming packages from the server.
+
+        @param cmd: Command received from server
+        @param args: Command arguments
+        """
+        if cmd == "Connected":
+            # this is where death link will be set up
+            self.slot_data = args.get("slot_data", None)
+            self.last_rcvd_index = -1
+        elif cmd == "RoomInfo":
+            self.seed_name = args["seed_name"]
+        elif cmd == "Print":
+            pass
+        elif cmd == "ReceivedItems":
+            if args["index"] >= self.last_rcvd_index:
+                self.last_rcvd_index = args["index"]
+                for item in args["items"]:
+                    self.items_rcvd.append(item, self.last_rcvd_index)
+                    self.last_rcvd_index += 1
+                self.items_rcvd.sort(key=lambda v: v[1])
+        elif cmd == "Retrieved":
+            pass
+        elif cmd == "SetReply":
+            pass
+
     async def give_items(self) -> None:
         """
         Gives player all outstanding items they have not yet received
@@ -309,7 +342,7 @@ class WSRContext(CommonContext):
         @param self: The WSR client context
         """
         if await self.can_receive_items():
-            for item in self.items_received:
+            for item in self.items_rcvd:
                 await self._give_item(item)
         
         await self._give_item("Bowling (Standard) - Moving")
