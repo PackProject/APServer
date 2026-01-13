@@ -293,12 +293,16 @@ class WSRCommandProcessor(ClientCommandProcessor):
         super().__init__(ctx)
 
 
-    def _cmd_wii_connect(self, wii_ip: str) -> None:
+    def _cmd_wii_connect(self, wii_ip: str = -1) -> None:
         """
         Configures the IP address of the Wii console.
 
         @param wii_ip: IP address to use when communicating with the Wii
         """
+
+        if wii_ip == -1:
+            logger.info("Please enter a valid IP")
+            return
 
         assert isinstance(self.ctx, WSRContext)
 
@@ -307,7 +311,7 @@ class WSRCommandProcessor(ClientCommandProcessor):
 
         self.ctx.wii_ip = wii_ip
 
-
+    @mark_raw
     def _cmd_debug_item(self, item_name = "") -> None:
         """
         Send an item command for debugging purposes.
@@ -323,8 +327,7 @@ class WSRCommandProcessor(ClientCommandProcessor):
 
         # Defaults to a random item
         if not item_name:
-            all_names = wsr_items.keys()
-            item_name = all_names[randint(0, len(all_names) - 1)]
+            item_name = "Bowling (Standard) - Moving"
 
         Utils.async_start(self.ctx._give_item(item_name))
 
