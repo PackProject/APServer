@@ -47,6 +47,8 @@ class CommandID(IntEnum):
     """
     IDs for all PC -> Wii commands.
     """
+    # default command id
+    NONE = -1
 
     # PC client is attempting to connect
     CONNECT = 0
@@ -59,6 +61,9 @@ class CommandID(IntEnum):
 
     # PC client is sending an item
     ITEM = auto()
+
+    # PC client is sending a request for location data
+    LOCATION = auto()
 
 # =============================================================================#
 # AsyncUDPProtocol                                                             #
@@ -103,6 +108,8 @@ class WiiClient:
         self.command_queue = asyncio.Queue()
         self.current_request: Optional[CommandRequest] = None
         self.queue_processor_task = None
+
+        self.most_recent_packet_data = []
 
 
     async def connect(self):
@@ -156,6 +163,7 @@ class WiiClient:
         """
         Handle incoming UDP response
         """
+        self.most_recent_packet_data = data
 
         if self.current_request and not self.current_request.future.done():
             self.current_request.future.set_result(data)
@@ -255,11 +263,11 @@ class WiiClient:
             self.transport = None
 
 
-    async def send_packet(self, data, packet_type_id, timeout=2):
+    async def send_packet(self, data, packet_type_id=CommandID.NONE, timeout=2):
         """Send a single packet to the wii client"""
 
         packet = bytearray()
-        packet += struct.pack(">B", packet_type_id) # id: u8
+        packet += struct.pack(">B", packet_type_id) # id: u8 
         packet += data                              # data: byte[]
 
         if len(packet) > 512:
@@ -269,7 +277,7 @@ class WiiClient:
 
         # expect 0xAA byte for ack
         response = await self._send_command_queued(packet, timeout)
-        if len(response) == 1 and response[0] == 0xAA:
+        if (len(response) == 1 and response[0] == 0xAA) or (packet_type_id == CommandID.LOCATION and len(response) > 0):
             return True
         
         raise Exception(f"Packet went unacknowledged: {packet}")
@@ -349,6 +357,21 @@ class WSRCommandProcessor(ClientCommandProcessor):
         args = {"data": msg}
 
         Utils.async_start(self.ctx.wii_client.send_print_cmd(args))
+
+    def _cmd_check_locations(self, msg = "dummy") -> None:
+        """
+        Send a check location command for debugging purposes.
+        
+        @param self: WSRCommandProcessor
+        @param msg: does nothing
+        """
+        if not isinstance(self.ctx, WSRContext):
+            logger.info("Please connect to the wii first")
+
+        if not DEBUG_MODE:
+            return
+
+        Utils.async_start(self.ctx.check_locations())
 
 # =============================================================================#
 # Game context                                                                 #
@@ -505,9 +528,14 @@ class WSRContext(CommonContext):
 
         @param self: The WSR client context.
         """
+        if not isinstance(self.wii_client, WiiClient):
+            logger.info("Please connect to the wii first")
+            return
 
-        # TODO: Not yet implemented
-        pass
+        response = await self.wii_client.send_packet(bytes(), packet_type_id=CommandID.LOCATION)
+
+        logger.info(f"Location Data in bytes: {self.wii_client.most_recent_packet_data}")
+        
 
 
     async def _give_item(self, item_name: str) -> bool:
