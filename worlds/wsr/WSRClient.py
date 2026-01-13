@@ -20,6 +20,7 @@ from CommonClient import (
     gui_enabled,
     logger,
     server_loop,
+    mark_raw
 )
 from NetUtils import ClientStatus, NetworkItem, NetworkPlayer
 
@@ -182,7 +183,6 @@ class WiiClient:
         await self.send_packet(bytes(), CommandID.DISCONNECT)
         
 
-
     async def send_print_cmd(self, args: dict[str, Any], timeout=2):
         """
         Send a message to the Wii to display
@@ -191,7 +191,7 @@ class WiiClient:
         # Wii will expect UTF-16 encoded messages
         packet = args["data"].encode("utf-16-be")
         packet += bytearray(2) # null terminator
-        
+
         await self.send_packet(packet, CommandID.PRINT)
 
 
@@ -329,6 +329,7 @@ class WSRCommandProcessor(ClientCommandProcessor):
         Utils.async_start(self.ctx._give_item(item_name))
 
 
+    @mark_raw
     def _cmd_debug_print(self, msg = "dummy") -> None:
         """
         Send a printcommand for debugging purposes.
