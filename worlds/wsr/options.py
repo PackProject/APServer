@@ -27,7 +27,7 @@ class ProStatusGoal(Range):
     """Number of sports needed to get Pro Status in to finish the game"""
     display_name = "Pro Status Goal"
     range_start = 0
-    range_start = 20
+    range_end = 20
     default = 0
 
 

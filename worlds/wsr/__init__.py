@@ -1,10 +1,11 @@
 from BaseClasses import Item, ItemClassification, Tutorial, Location, MultiWorld
 from .items import item_table, create_item, create_itempool
-from .regions import create_region
+from .regions import create_region, create_regions
 from .locations import location_table, is_location_valid, get_locations_names, get_total_locations
 from .options import WSROptions, StampGoal, ChampionGoal, ProStatusGoal, Traps, StartingItems, SportsUnlockState, \
                     IncludeHardStamps, IncludeLongStamps, ExcludedStamps
-from .types import CategoryIndex, SportIndex, WSRSport, WSRItemData
+from .types import CategoryIndex, SportIndex, WSRItemData, WSRItem
+from worlds.Files import APPlayerContainer, AutoPatchRegister
 from worlds.AutoWorld import World, WebWorld, CollectionState
 from worlds.generic.Rules import add_rule
 from typing import List, Dict, TextIO
@@ -46,7 +47,7 @@ class WSRWeb(WebWorld):
         "setup/en",
         ["Kiwi", "Plyd", "Cyndifusic", "Dragonz"]
     )]
-    theme = "ice"
+    theme = "partyTime"
     rich_text_options_doc = True
 
 class WSRWorld(World):
@@ -68,10 +69,10 @@ class WSRWorld(World):
         return super().generate_early()
 
     def create_regions(self):
-        #TODO: create regions
-        pass
+        create_regions(self)
 
     def create_items(self):
+        # must have logic to fill progressive checks first to see how many junk items to fill the world
         self.multiworld.itempool += create_itempool(self)
 
     def set_rules(self):
@@ -96,7 +97,7 @@ class WSRWorld(World):
     
     def remove(self, state: "CollectionState", item: "Item") -> bool:
         old_count: int = state.count(item.name, self.player)
-        change = super().collect(state,item)
+        change = super().remove(state,item)
         if change and old_count == 1:
             if "Stamp" in item.name:
                 state.prog_items[self.player]["Stamps"] -= 1

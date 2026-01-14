@@ -24,7 +24,8 @@ from CommonClient import (
 )
 from NetUtils import ClientStatus, NetworkItem, NetworkPlayer
 
-from .items import wsr_items
+from .items import wsr_items, WSRItem
+from .LocationList import location_table
 
 if TYPE_CHECKING:
     import kvui
@@ -86,7 +87,7 @@ class CommandRequest:
     def __init__(self, command: bytes, timeout: float = 10.0):
         self.command = command
         self.timeout = timeout
-        self.future = asyncio.get_running_loop().create_future() # asyncio.Future()
+        self.future = asyncio.Future()
         self.timestamp = time.time()
 
 # =============================================================================#
@@ -467,9 +468,6 @@ class WSRContext(CommonContext):
 
         @param password_requested: Whether the server requires a password. Defaults to `False`.
         """
-
-        self.log("Authenticating with the Archipelago server...")
-
         if password_requested and not self.password:
             await super().server_auth(password_requested)
 
@@ -495,7 +493,7 @@ class WSRContext(CommonContext):
                 self.last_rcvd_index = args["index"]
 
                 for item in args["items"]:
-                    self.items_rcvd.append(item, self.last_rcvd_index)
+                    self.items_rcvd.append((item, self.last_rcvd_index))
                     self.last_rcvd_index += 1
                 
                 self.items_rcvd.sort(key=lambda v: v[1])
@@ -534,7 +532,26 @@ class WSRContext(CommonContext):
 
         response = await self.wii_client.send_packet(bytes(), packet_type_id=CommandID.LOCATION)
 
-        logger.info(f"Location Data in bytes: {self.wii_client.most_recent_packet_data}")
+        p_data = self.wii_client.most_recent_packet_data
+
+        if(int.from_bytes((p_data), byteorder="big") == 4294967295):
+            return
+        
+        locations_checked = []
+        location = None
+
+        for i in range(0, len(p_data), 4):
+            location = int.from_bytes(p_data[i:i+4], byteorder="big")
+            for l in self.missing_locations:
+                logger.info(l)
+            if location in self.missing_locations:
+                self.locations_checked.add(WSRItem.get_apid(location))
+                locations_checked.append(location)
+
+        if locations_checked:
+            logger.info(f"Sending new check: {p_data}")
+            await self.send_msgs([{"cmd": "LocationsChecks", "locations": locations_checked}])
+            
         
 
 
@@ -593,7 +610,6 @@ async def sync_loop(ctx: WSRContext) -> None:
             if ctx.is_hooked():
                 await ctx.give_items()
                 await ctx.check_locations()
-                
                 if ctx.awaiting_rom:
                     await ctx.server_auth()
                 

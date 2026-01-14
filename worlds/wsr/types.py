@@ -1,6 +1,7 @@
 from enum import IntEnum
 from typing import NamedTuple, Optional, List
 from BaseClasses import Location, Item, ItemClassification
+from dataclasses import dataclass
 
 class WSRLocation(Location):
     game = "Wii Sports Resort"
@@ -9,6 +10,7 @@ class WSRItem(Item):
     game = "Wii Sports Resort"
 
 class LocData(NamedTuple):
+    region: str = None
     id: int = 0
     category: int = 0
     sport: int = 0
@@ -50,15 +52,11 @@ class SportIndex(IntEnum):
     CYCLING = 18
     SKYDIVING = 19
     FLYOVER = 20
-    
-
-class WSRSport(NamedTuple):
-    category: CategoryIndex
-    sport: SportIndex
 
 class WSRItemData(NamedTuple):
     itemType: str
     classification: ItemClassification
-    sport: WSRSport
+    category: CategoryIndex
+    sport: SportIndex
     item_id: Optional[int]
 
