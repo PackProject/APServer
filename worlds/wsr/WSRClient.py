@@ -570,10 +570,10 @@ class WSRContext(CommonContext):
         
         new_locations_found = []
 
-        for i in range(0, len(p_data), 4):
-            location = int.from_bytes(p_data[i:i+4], byteorder="big")
+        for i in range(0, len(p_data), 2):
+            p_slice = p_data[i:i+2]
 
-            logger.info(f"Location: {location}")
+            location = int.from_bytes(p_slice, byteorder="big")
 
             if location in self.missing_locations and location not in self.locations_checked:
                 self.locations_checked.add(location)
