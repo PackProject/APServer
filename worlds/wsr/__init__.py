@@ -1,11 +1,10 @@
 from BaseClasses import Item, ItemClassification, Tutorial, Location, MultiWorld
 from .items import item_table, create_item, create_itempool
 from .regions import create_region, create_regions
-from .locations import is_location_valid, get_locations_names, get_total_locations
 from .options import WSROptions, StampGoal, ChampionGoal, ProStatusGoal, Traps, StartingItems, SportsUnlockState, \
                     IncludeHardStamps, IncludeLongStamps, ExcludedStamps
 from .types import CategoryIndex, SportIndex, WSRItemData, WSRItem
-from .LocationList import location_table
+from .LocationList import location_table, is_location_valid, get_locations_names, get_total_locations
 from worlds.Files import APPlayerContainer, AutoPatchRegister
 from worlds.AutoWorld import World, WebWorld, CollectionState
 from worlds.generic.Rules import add_rule

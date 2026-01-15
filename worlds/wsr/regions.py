@@ -1,6 +1,5 @@
 from BaseClasses import Region, Entrance, ItemClassification, Location, LocationProgressType
 from .types import CategoryIndex, SportIndex, WSRLocation, WSRItem
-from .locations import HARD_STAMPS_LOCATIONS, LONG_STAMPS_LOCATIONS
 from .LocationList import location_table
 from typing import TYPE_CHECKING, List, Dict, Optional
 from .options import SportsUnlockState

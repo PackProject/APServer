@@ -2,7 +2,6 @@ from BaseClasses import Item
 from BaseClasses import ItemClassification as ItemType
 from typing import List, Dict, TYPE_CHECKING, Optional
 from .types import WSRItemData, CategoryIndex, SportIndex
-from .locations import get_total_locations
 
 if TYPE_CHECKING:
     from . import WSRWorld

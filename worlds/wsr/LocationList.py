@@ -1,5 +1,8 @@
 from collections import OrderedDict
-from typing import NamedTuple
+from typing import NamedTuple, TYPE_CHECKING, Dict
+
+if TYPE_CHECKING:
+    from . import WSRWorld
 
 #
 #   Type Definitions:
@@ -26,11 +29,31 @@ class LocData(NamedTuple):
     sport: int = 0
     id: int = 0
 
+def get_total_locations(world: "WSRWorld") -> int:
+    total = 0
+
+    for name in location_table.keys():
+        if is_location_valid(world, name):
+            total += 1
+
+    return total
+
+def is_location_valid(world: "WSRWorld", location: str) -> bool:
+    # this currently does absolutely nothing
+    if world.options.sports_unlock_state == 0: #change to sports unlock list
+        pass
+
+    return True
+
+def get_locations_names() -> Dict[str, int]:
+    names = {name: data.id for name, data in location_table.items()}
+    return names
+
 
 #       Location:                                             Type                 Category ID    Sport ID                Location ID        
 location_table = OrderedDict([
     #Swordplay Duel
-    ("Swordplay Duel - First Win",                            LocData("Duel", 'Custom',            1,             1,                      0x0000)),
+    ("Swordplay Duel - First Win",                            LocData("Duel", 'Custom',            1,             1,                      0x0200)),
     ("Swordplay Duel (Stamp) - Cliff-hanger",                 LocData("Duel", 'Stamp',             1,             1,                      0x0001)),
     ("Swordplay Duel (Stamp) - Straight to the Point",        LocData("Duel", 'Stamp',             1,             1,                      0x0002)),
     ("Swordplay Duel (Stamp) - Met Your Match",               LocData("Duel", 'Stamp',             1,             1,                      0x0003)),
