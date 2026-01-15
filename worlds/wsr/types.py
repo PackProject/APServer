@@ -6,9 +6,6 @@ from dataclasses import dataclass
 class WSRLocation(Location):
     game = "Wii Sports Resort"
 
-class WSRItem(Item):
-    game = "Wii Sports Resort"
-
 class LocData(NamedTuple):
     region: str = None
     id: int = 0

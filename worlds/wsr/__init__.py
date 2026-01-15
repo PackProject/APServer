@@ -1,9 +1,9 @@
 from BaseClasses import Item, ItemClassification, Tutorial, Location, MultiWorld
-from .items import item_table, create_item, create_itempool
+from .items import item_table, create_item, create_itempool, WSRItem
 from .regions import create_region, create_regions
 from .options import WSROptions, StampGoal, ChampionGoal, ProStatusGoal, Traps, StartingItems, SportsUnlockState, \
                     IncludeHardStamps, IncludeLongStamps, ExcludedStamps
-from .types import CategoryIndex, SportIndex, WSRItemData, WSRItem
+from .types import CategoryIndex, SportIndex, WSRItemData
 from .LocationList import location_table, is_location_valid, get_locations_names, get_total_locations
 from worlds.Files import APPlayerContainer, AutoPatchRegister
 from worlds.AutoWorld import World, WebWorld, CollectionState
@@ -53,7 +53,7 @@ class WSRWeb(WebWorld):
 class WSRWorld(World):
     #VARS
     game = "Wii Sports Resort"
-    item_name_to_id = {name: data.sport for name, data in item_table.items()}
+    item_name_to_id = {name: WSRItem.get_apid(data.item_id) for name, data in item_table.items()}
     location_name_to_id = get_locations_names()
     options_dataclass = WSROptions
     options: WSROptions

@@ -1,5 +1,5 @@
 from BaseClasses import Region, Entrance, ItemClassification, Location, LocationProgressType
-from .types import CategoryIndex, SportIndex, WSRLocation, WSRItem
+from .types import CategoryIndex, SportIndex, WSRLocation
 from .LocationList import location_table
 from typing import TYPE_CHECKING, List, Dict, Optional
 from .options import SportsUnlockState

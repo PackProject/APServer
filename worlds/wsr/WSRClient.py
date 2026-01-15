@@ -412,7 +412,7 @@ class WSRContext(CommonContext):
 
     command_processor = WSRCommandProcessor
     game: str = "Wii Sports Resort"
-    items_handling: int = 0b001
+    items_handling: int = 0b111
 
     def __init__(self, server_address: Optional[str], password: Optional[str]) -> None:
         """
@@ -427,6 +427,7 @@ class WSRContext(CommonContext):
         self.items_rcvd: list[tuple[NetworkItem, int]] = []
         self.sync_task: Optional[asyncio.Task[None]] = None
         self.last_rcvd_index = -1
+        self.items_sent_to_wii = 0
         self.awaiting_rom: bool = False
         self.wii_client: WiiClient = None
         self.wii_ip: str = ""
@@ -517,14 +518,16 @@ class WSRContext(CommonContext):
 
         if cmd == "ReceivedItems":
             # Validate package by checking against the last known item index
-            if args["index"] >= self.last_rcvd_index:
-                self.last_rcvd_index = args["index"]
+            index = args["index"]
+            for item in args["items"]:
+                if index >= len(self.items_rcvd):
+                    self.items_rcvd.append((item, index))
+                else:
+                    self.items_rcvd[index] = (item, index)
+                index += 1
 
-                for item in args["items"]:
-                    self.items_rcvd.append((item, self.last_rcvd_index))
-                    self.last_rcvd_index += 1
-                
-                self.items_rcvd.sort(key=lambda v: v[1])
+            self.items_rcvd.sort(key=lambda v: v[1])
+            self.last_rcvd_index = len(self.items_rcvd)
 
         elif cmd == "LocationInfo":
             # TODO: I think we may want this
@@ -540,9 +543,22 @@ class WSRContext(CommonContext):
         
         @param self: The WSR client context
         """
-        if await self.can_receive_items():
-            for item in self.items_rcvd:
-                await self._give_item(item)
+        if not self.is_hooked():
+            return
+        
+        while self.items_sent_to_wii < len(self.items_rcvd):
+            network_item, index = self.items_rcvd[self.items_sent_to_wii]
+
+            ap_item_id = network_item.item
+
+            item_id = ap_item_id - 543000 # base_id
+
+            if await self._give_item(item_id):
+                self.items_sent_to_wii += 1
+            else:
+                logger.info(f"Tried sending item to wii but failed, trying again in 5 seconds...")
+                asyncio.sleep(5.0)
+                break
 
 
     async def check_locations(self) -> None:
@@ -587,7 +603,7 @@ class WSRContext(CommonContext):
         
 
 
-    async def _give_item(self, item_name: str) -> bool:
+    async def _give_item(self, item_id: int) -> bool:
         """
         Give an item to the player.
 
@@ -597,8 +613,6 @@ class WSRContext(CommonContext):
         """
         if not await self.can_receive_items():
             return False
-        
-        item_id = wsr_items[item_name].item_id
 
         self.log(f"item id: {item_id}")
 
