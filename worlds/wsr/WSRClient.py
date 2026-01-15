@@ -57,6 +57,9 @@ class CommandID(IntEnum):
     # PC client is disconnecting
     DISCONNECT = auto()
 
+    # PC client is sending slot information to wii
+    AUTHENTICATE = auto()
+
     # PC client wants to display a message
     PRINT = auto()
 
@@ -158,7 +161,6 @@ class WiiClient:
             self.transport.close()
 
         self.established = False
-
 
     def handle_response(self, data):
         """
@@ -374,6 +376,29 @@ class WSRCommandProcessor(ClientCommandProcessor):
 
         Utils.async_start(self.ctx.check_locations())
 
+    def _cmd_set_name(self, msg = "") -> None:
+        """
+        Set your slot name to authenticate the AP server with the game
+        
+        @param self: WSRCommandProcessor
+        @param msg: slot name
+        """
+        if not isinstance(self.ctx, WSRContext):
+            logger.info("Please connect to the wii first")
+
+        asyncio.create_task(self.ctx.write_slot_name(msg))
+        self.slot = msg
+
+    def _cmd_print_missing_locations(self, msg = "") -> None:
+        """
+        Docstring for _print_missing_locations
+        
+        :param self: Description
+        :param msg: Description
+        """
+        for location in self.ctx.missing_locations:
+            logger.info(f"Missing Location: {location}")
+
 # =============================================================================#
 # Game context                                                                 #
 # =============================================================================#
@@ -387,6 +412,7 @@ class WSRContext(CommonContext):
 
     command_processor = WSRCommandProcessor
     game: str = "Wii Sports Resort"
+    items_handling: int = 0b001
 
     def __init__(self, server_address: Optional[str], password: Optional[str]) -> None:
         """
@@ -472,11 +498,13 @@ class WSRContext(CommonContext):
             await super().server_auth(password_requested)
 
         if not self.auth:
-            if not self.awaiting_rom:
-                self.awaiting_rom = True
-                self.log("Waiting to connect to the game for player information.")
-        else:
-            await self.send_connect()
+            if self.awaiting_rom:
+                return
+            self.awaiting_rom = True
+            logger.info("Awaiting Slot Name...")            
+            return
+
+        await self.send_connect()
 
 
     def on_package(self, cmd: str, args: dict[str, Any]) -> None:
@@ -503,7 +531,7 @@ class WSRContext(CommonContext):
             pass
 
         elif cmd == "PrintJSON":
-            self.wii_client.send_print_cmd(args)
+            Utils.async_start(self.wii_client.send_print_cmd(args))
 
 
     async def give_items(self) -> None:
@@ -530,27 +558,31 @@ class WSRContext(CommonContext):
             logger.info("Please connect to the wii first")
             return
 
-        response = await self.wii_client.send_packet(bytes(), packet_type_id=CommandID.LOCATION)
+        try:
+            await self.wii_client.send_packet(bytes(), packet_type_id=CommandID.LOCATION)
+        except Exception:
+            return
 
         p_data = self.wii_client.most_recent_packet_data
 
-        if(int.from_bytes((p_data), byteorder="big") == 4294967295):
+        if(int.from_bytes(p_data, byteorder="big") == 0xFFFF):
             return
         
-        locations_checked = []
-        location = None
+        new_locations_found = []
 
         for i in range(0, len(p_data), 4):
             location = int.from_bytes(p_data[i:i+4], byteorder="big")
-            for l in self.missing_locations:
-                logger.info(l)
-            if location in self.missing_locations:
-                self.locations_checked.add(WSRItem.get_apid(location))
-                locations_checked.append(location)
 
-        if locations_checked:
-            logger.info(f"Sending new check: {p_data}")
-            await self.send_msgs([{"cmd": "LocationsChecks", "locations": locations_checked}])
+            logger.info(f"Location: {location}")
+
+            if location in self.missing_locations and location not in self.locations_checked:
+                self.locations_checked.add(location)
+                new_locations_found.append(location)
+
+                logger.info(f"Found new location: {location}")
+
+        if new_locations_found:
+            await self.send_msgs([{"cmd": "LocationsChecks", "locations": new_locations_found}])
             
         
 
@@ -580,6 +612,19 @@ class WSRContext(CommonContext):
         
         self.log("failed to send item")
         return False
+    
+    async def write_slot_name(self, slot_name: str):
+        """
+        Send the slot name to the wii
+        """
+        if not self.wii_client:
+            return
+        
+        packet = slot_name.encode("utf-16-be")
+        packet += bytearray(2)
+
+        if await self.wii_client.send_packet(packet, packet_type_id=CommandID.AUTHENTICATE):
+            self.auth = slot_name
 
 
     async def can_receive_items(self) -> bool:
@@ -608,10 +653,12 @@ async def sync_loop(ctx: WSRContext) -> None:
         
         try:
             if ctx.is_hooked():
-                await ctx.give_items()
-                await ctx.check_locations()
                 if ctx.awaiting_rom:
                     await ctx.server_auth()
+
+                await ctx.give_items()
+                await ctx.check_locations()
+                
                 
                 await asyncio.sleep(0.1)
             else:

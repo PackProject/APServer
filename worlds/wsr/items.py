@@ -59,7 +59,7 @@ def create_itempool(world: "WSRWorld") -> List[Item]:
 
         itempool += create_multiple_items(world, name, item_frequencies.get(name, 1), item_type)
 
-    itempool += create_junk_items(world, get_total_locations(world) - len(itempool))
+    itempool += create_junk_items(world, len(world.multiworld.get_unfilled_locations(world.player)) - len(itempool))
     return itempool
 
 
@@ -326,7 +326,7 @@ junk_weights = {
     "100 Skill Points (Air Sports - Skydiving)": 3,
     "Extra Max Heart (Swordplay Showdown)": 3,
     "Extra Max Heart (Cycling)": 3,
-    "Random Cosmetic": 37
+    "Random Cosmetic": 42
 }
 
 

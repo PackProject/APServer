@@ -1,5 +1,6 @@
 from typing import Dict, TYPE_CHECKING
 from .types import LocData
+from .LocationList import location_table as lt
 
 if TYPE_CHECKING:
     from . import WSRWorld
@@ -21,7 +22,7 @@ def is_location_valid(world: "WSRWorld", location: str) -> bool:
     return True
 
 def get_locations_names() -> Dict[str, int]:
-    names = {name: data.id for name, data in location_table.items()}
+    names = {name: data.id for name, data in lt.items()}
     return names
 
 
